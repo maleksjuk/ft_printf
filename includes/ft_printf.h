@@ -10,6 +10,9 @@
 typedef struct			s_printf
 {
 	va_list				ap;
+	void 				arg;
+	int 				width;
+	int 				precision;
 	char				type;
 	char				*format;
 	char				*spec_mask;
