@@ -6,74 +6,111 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:31:12 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/10 15:13:02 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/10 19:16:07 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
-#include <unistd.h>
-//#include "libft/includes/libft.h"
 
-char	*transform(int num, int system, char dec)
+// transform int from '10' to 'X' system
+int		transform(int num, int system, char dec, char *str)
 {
 	char	c;
-	char	*str;
+	int		i;
 
 	if (num < system)
 	{
 		c = num + dec;
 		if (num > 9)
 			c -= 10;
-		//write(1, &c, 1);
-		return (ft_strdup(&c));
+		str[0] = c;
+		return (0);
 	}
 	else
 	{
-		str = transform(num / system, system, dec);
+		i = transform(num / system, system, dec, str) + 1;
 		c = num % system + dec;
 		if (num % system > 9)
 			c -= 10;
-		//write(1, &c, 1);
-		return (ft_strjoin(str, &c));
+		str[i] = c;
+		return (i);
 	}
 }
 
-// integer '10' signed
+// length of number to define width
+int		len_nbr(int num)
+{
+	int	len;
+
+	len = 1;
+	while (num > 9)
+	{
+		num = num / 10;
+		len++;
+	}
+	return (len);
+}
+
+void	simvol_out(t_printf **p, int len, char c)
+{
+	while ((*p)->width > len)
+	{
+		write(1, &c, 1);
+		((*p)->width)--;
+	}
+}
+
+void	for_precision(t_printf **p, int len)
+{
+	while ((*p)->precision > len)
+	{
+		write(1, "0", 1);
+		((*p)->precision)--;
+		if ((*p)->width > 0)
+			((*p)->width)--;
+	}
+}
+
+// integer '10' signed; FLAGS 0+-_
 int		ft_d(t_printf **p)
 {
 	int	num;
+	int	len;
 
-	// prepare number to type
 	num = va_arg((*p)->ap, int);
-	// prepare flags to write
-	// write chars
-	printf("%i\n", num);
+	len = len_nbr(num);
+	if ((*p)->plus && num > 0)				// FLAG +
+		write(1, "+", 1);
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		num = num * (-1);
+	}
+	else if ((*p)->space && !(*p)->plus)	// FLAG space (_)
+		write(1, " ", 1);
+	for_precision(p, len);
+	if ((*p)->zero)							// FLAG 0
+		simvol_out(p, len, '0');
+	if ((*p)->width > len && !(*p)->minus)
+		simvol_out(p, len, ' ');
+	ft_putnbr(num);
+	if ((*p)->minus)						// FLAG -
+		simvol_out(p, len, ' ');
 	return (0);
 }
 
 // integer '10' signed
 int		ft_i(t_printf **p)
 {
-	int	num;
-
-	// prepare number to type
-	num = va_arg((*p)->ap, int);
-	// prepare flags to write
-	// write chars
-	printf("%i\n", num);
-	return (0);
+	return (ft_d(p));
 }
 
-// integer '10' unsigned
+// integer '10' unsigned; FLAGS 0-
 int		ft_u(t_printf **p)
 {
-	int	num;
+	unsigned int	num;
 
-	// prepare number to type
-	num = va_arg((*p)->ap, int);
-	// prepare flags to write
-	// write chars
+	num = va_arg((*p)->ap, unsigned int);
 	printf("%i\n", num);
 	return (0);
 }
@@ -83,11 +120,32 @@ int		ft_o(t_printf **p)
 {
 	int		num;
 	char	*str;
+	int		len;
 
-	//(*p)->width;
 	num = va_arg((*p)->ap, int);
-	str = transform(num, 8, '0');
-	printf("%s\n", str);
+	if (num < 0)
+		return (1);
+	str = ft_strnew(len_nbr(num) * 2);
+	if (!str)
+		return (1);
+	len = transform(num, 8, '0', str);
+
+	if ((*p)->hash)
+		len++;
+	for_precision(p, len);
+	if ((*p)->zero)							// FLAG 0
+		simvol_out(p, len, '0');
+	if ((*p)->width > len && !(*p)->minus)
+		simvol_out(p, len, ' ');
+	if ((*p)->hash)
+		write(1, "#", 1);
+	ft_putnbr(num);
+	if ((*p)->minus)						// FLAG -
+		simvol_out(p, len, ' ');
+	if ((*p)->hash)
+		len--;
+	write(1, str, len + 1);
+	free(str);
 	return (0);
 }
 
@@ -96,10 +154,15 @@ int		ft_x(t_printf **p)
 {
 	int		num;
 	char	*str;
+	int		len;
 
 	num = va_arg((*p)->ap, int);
-	str = transform(num, 16, 'a');
-	printf("%s\n", str);
+	str = ft_strnew(len_nbr(num) * 2);
+	if (!str)
+		exit(1);
+	len = transform(num, 16, 'a', str);
+	write(1, str, len + 1);
+	free(str);
 	return (0);	
 }
 
@@ -108,15 +171,14 @@ int		ft_X(t_printf **p)
 {
 	int		num;
 	char	*str;
+	int		len;
 
 	num = va_arg((*p)->ap, int);
-	str = transform(num, 16, 'A');
-	printf("%s\n", str);
+	str = ft_strnew(len_nbr(num) * 2);
+	if (!str)
+		return (1);
+	len = transform(num, 16, 'A', str);
+	write(1, str, len + 1);
+	free(str);
 	return (0);
 }
-
-/*int		main()
-{
-	ft_i(12);
-	return (0);
-}*/
