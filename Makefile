@@ -6,7 +6,7 @@
 #    By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 15:46:00 by pguitar           #+#    #+#              #
-#    Updated: 2019/11/10 15:02:48 by obanshee         ###   ########.fr        #
+#    Updated: 2019/11/15 18:52:56 by obanshee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ FLAGS = -Wall -Werror -Wextra
 
 INC = -I ./includes/ft_printf.h -I ./$(LIBFT_PATH)includes/libft.h
 
-SRCS_NAME = ft_printf.c numbers.c \
+SRCS_NAME = ft_printf.c numbers.c chars.c format.c 
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(SRCS_NAME:.c=.o))
