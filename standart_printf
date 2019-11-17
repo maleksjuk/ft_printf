@@ -1,4 +1,5 @@
 STANDART TYPE d (i): number > 0
+This is test  0: |  3|---|  %3d|
 This is test  1: | +3|---| %+3d|
 This is test  2: |3  |---| %-3d|
 This is test  3: |  3|---| % 3d|
@@ -12,6 +13,7 @@ This is test 10: | 03|---|% 03d|
 This is test 11: | 3 |---|% -3d|
 
 STANDART TYPE d (i): number < 0
+This is test  0: | -3|---|  %3d|
 This is test  1: | -3|---| %+3d|
 This is test  2: |-3 |---| %-3d|
 This is test  3: | -3|---| % 3d|
@@ -25,6 +27,7 @@ This is test 10: |-03|---|% 03d|
 This is test 11: |-3 |---|% -3d|
 
 STANDART TYPE u: number > 0
+This is test  0: |  3|---|  %3u|
 This is test  1: |  3|---| %+3u|
 This is test  2: |3  |---| %-3u|
 This is test  3: |  3|---| % 3u|
@@ -38,6 +41,7 @@ This is test 10: |003|---|% 03u|
 This is test 11: |3  |---|% -3u|
 
 STANDART TYPE u: number < 0
+This is test  1: |4294967293|---|  %3u|
 This is test  1: |4294967293|---| %+3u|
 This is test  2: |4294967293|---| %-3u|
 This is test  3: |4294967293|---| % 3u|
@@ -51,6 +55,7 @@ This is test 10: |4294967293|---|% 03u|
 This is test 11: |4294967293|---|% -3u|
 
 STANDART TYPE o: number > 0
+This is test  0: |  3|---|  %3o|
 This is test  1: |  3|---| %+3o|
 This is test  2: |3  |---| %-3o|
 This is test  3: |  3|---|  % o|
@@ -68,6 +73,7 @@ This is test 14: |3  |---|% -3o|
 This is test 15: |003|---|% 03o|
 
 STANDART TYPE o: number < 0
+This is test  0: |37777777775|---|  %3o|
 This is test  1: |37777777775|---| %+3o|
 This is test  2: |37777777775|---| %-3o|
 This is test  3: |37777777775|---|  % o|
@@ -85,6 +91,7 @@ This is test 14: |37777777775|---|% -3o|
 This is test 15: |37777777775|---|% 03o|
 
 STANDART TYPE x (X): number > 0
+This is test  0: |    3|---|  %5x|
 This is test  1: |    3|---| %+5x|
 This is test  2: |3    |---| %-5x|
 This is test  3: |    3|---| % 5x|
@@ -102,6 +109,7 @@ This is test 14: |3    |---|% -5x|
 This is test 15: |00003|---|% 05x|
 
 STANDART TYPE x (X): number < 0
+This is test  0: |fffffffd|---|  %5x|
 This is test  1: |fffffffd|---| %+5x|
 This is test  2: |fffffffd|---| %-5x|
 This is test  3: |fffffffd|---| % 5x|
