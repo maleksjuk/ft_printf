@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:51:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/15 20:16:10 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/17 19:08:20 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		transform(int num, int system, char dec, char *str)
 	if (num < system)
 	{
 		if (num > 9)
-			c = num / 10 + dec;
+			c = num - 10 + dec;
 		else
 			c = num + '0';
-		if (num > 9)
-			c -= 10;
+		// if (num > 9)
+		// 	c -= 10;
 		str[0] = c;
 		return (0);
 	}
@@ -46,6 +46,8 @@ int		len_nbr(int num)
 	int	len;
 
 	len = 1;
+	if (num < 0)
+		num *= -1;
 	while (num > 9)
 	{
 		num = num / 10;
@@ -54,7 +56,7 @@ int		len_nbr(int num)
 	return (len);
 }
 
-void	simvol_out(t_printf **p, int len, char c, char *str)
+int		simvol_out(t_printf **p, int len, char c, char *str)
 {
 	int	i;
 
@@ -64,15 +66,20 @@ void	simvol_out(t_printf **p, int len, char c, char *str)
 		str[i++] = c; //write(1, &c, 1);
 		((*p)->width)--;
 	}
+	return (i);
 }
 
-void	for_precision(t_printf **p, int len)
+int		for_precision(t_printf **p, int len, char *str)
 {
+	int	i;
+
+	i = 0;
 	while ((*p)->precision > len)
 	{
-		write(1, "0", 1);
+		str[i++] = '0'; //write(1, "0", 1);
 		((*p)->precision)--;
 		if ((*p)->width > 0)
 			((*p)->width)--;
 	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:09:55 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/16 16:39:07 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:44:25 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	ft_c(t_printf **p)
 		return (1);
 	if ((*p)->width > 1 && !(*p)->minus)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
-	str[i++] = c; //ft_putchar(c);
+	str[i++] = c;
 	if ((*p)->minus)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
+	(*p)->final_str = ft_strjoin((*p)->final_str, str);
+	free(str);
 	return (0);
 }
 
@@ -40,7 +42,7 @@ int ft_s(t_printf **p)
 	int		j;
 
 	i = 0;
-	num = (*p)->NEW_VARIABLE; //va_arg((*p)->ap, int);
+	num = (*p)->str_val; //va_arg((*p)->ap, int);
 	len = ft_strlen(num);
 	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
 	if (!str)
@@ -66,7 +68,7 @@ int ft_s(t_printf **p)
 		i += simvol_out(p, len, ' ', &str[i]);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
-
+//	ft_putstr((*p)->str_val);
 	return (0);
 }
 

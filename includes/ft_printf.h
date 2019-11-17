@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "../libft/includes/libft.h"
 
 #include <stdio.h>
@@ -23,6 +24,7 @@ typedef struct			s_printf
 	int 				precision;
 	intmax_t			int_val;
 	uintmax_t			uint_val;
+	char				*str_val;
 	char				type;
 	char				size;
 	char				*format;
@@ -35,12 +37,25 @@ int		ft_printf(const char* format, ...);
 int 	ft_construct(t_printf **p);
 int 	ft_pars(t_printf **p);
 int 	ft_search_spec(t_printf **p, int i);
+void	ft_choose_value(t_printf **p);
+
+// pars_1.c
+int 	ft_pars(t_printf **p);
+
+// pars_2.c
+int 	ft_search_type(t_printf **p, int i);
+int 	ft_search_spec_1(t_printf **p, int i);
+int		ft_search_spec_2(t_printf **p, int i);
+int 	ft_choose_type(t_printf **p);
+
+// size.c
+void	ft_choose_value(t_printf **p);
 
 // format.c
 int		transform(int num, int system, char dec, char *str);
 int		len_nbr(int num);
-void	simvol_out(t_printf **p, int len, char c, char *str);
-void	for_precision(t_printf **p, int len);
+int		simvol_out(t_printf **p, int len, char c, char *str);
+int		for_precision(t_printf **p, int len, char *str);
 
 // numbers.c
 //char	*transform(int num, int system, char dec);
