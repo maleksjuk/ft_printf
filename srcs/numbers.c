@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:31:12 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/17 19:10:40 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/17 19:37:54 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,21 @@ int		ft_d(t_printf **p)
 	
 	if ((*p)->minus)
 	{
-		if ((*p)->plus && num > 0)				// FLAG +
-			str[i++] = '+';
 		if (num < 0)
 		{
 			str[i++] = '-';
 			num = num * (-1);
 		}
-		else if ((*p)->space && !(*p)->plus)	// FLAG space (_)
-			str[i++] = ' ';
+		else
+		{
+			len--;
+			if ((*p)->plus)
+				str[i++] = '+';
+			else if ((*p)->space)	// FLAG space (_)
+				str[i++] = ' ';
+			else
+				len++;
+		}
 		i += for_precision(p, len, &str[i]);
 		if ((*p)->zero)							// FLAG 0
 			i += simvol_out(p, len, '0', &str[i]);
@@ -50,17 +56,25 @@ int		ft_d(t_printf **p)
 	}
 	else
 	{
-		if (((*p)->plus || (*p)->space) && !(*p)->zero)
-			i += simvol_out(p, len - 1, ' ', &str[i]);
-		if ((*p)->plus && num > 0)				// FLAG +
-			str[i++] = '+';
+		if (!(*p)->zero)
+			i += ((*p)->plus || (*p)->space) ?
+				simvol_out(p, len - 1, ' ', &str[i]) :
+				simvol_out(p, len, ' ', &str[i]);
 		if (num < 0)
 		{
 			str[i++] = '-';
 			num = num * (-1);
 		}
-		else if ((*p)->space && !(*p)->plus)	// FLAG space (_)
-			str[i++] = ' ';
+		else
+		{
+			len--;
+			if ((*p)->plus)
+				str[i++] = '+';
+			else if ((*p)->space)	// FLAG space (_)
+				str[i++] = ' ';
+			else
+				len++;
+		}
 		i += for_precision(p, len, &str[i]);
 		if ((*p)->zero)							// FLAG 0
 			i += simvol_out(p, len, '0', &str[i]);
