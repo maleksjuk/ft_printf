@@ -15,12 +15,12 @@
 // integer '10' signed; FLAGS 0+-_
 int		ft_d(t_printf **p)
 {
-	int		num;
-	int		len;
-	int		len_str;
-	char	*str;
-	int		i;
-	int		znak;	// '+', '-' or ' '
+	intmax_t	num;
+	int			len;
+	int			len_str;
+	char		*str;
+	int			i;
+	int			znak;
 
 	i = 0;
 	znak = 0;
@@ -34,14 +34,14 @@ int		ft_d(t_printf **p)
 	str = ft_strnew(len_str + 1);
 	if (!str)
 		return (1);
-	if ((*p)->minus)		//////////////////
+	if ((*p)->minus)
 	{
 		if (num < 0)
 		{
 			str[i++] = '-';
 			num *= -1;
 		}
-		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+		else if ((*p)->plus && num > 0)
 			str[i++] = '+';
 		else if ((*p)->space && num >= 0)
 			str[i++] = ' ';
@@ -52,14 +52,14 @@ int		ft_d(t_printf **p)
 		i += len;
 		i += simvol_out(p, len, ' ', &str[i]);
 	}
-	else if ((*p)->zero)	//////////////////
+	else if ((*p)->zero)
 	{
 		if (num < 0)
 		{
 			str[i++] = '-';
 			num *= -1;
 		}
-		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+		else if ((*p)->plus && num > 0)
 			str[i++] = '+';
 		else if ((*p)->space)
 			str[i++] = ' ';
@@ -67,7 +67,7 @@ int		ft_d(t_printf **p)
 		i += simvol_out(p, len, '0', &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
 	}
-	else					///////////////////
+	else
 	{
 		i += simvol_out(p, len, ' ', &str[i]);
 		if (num < 0)
@@ -75,34 +75,13 @@ int		ft_d(t_printf **p)
 			str[i++] = '-';
 			num *= -1;
 		}
-		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+		else if ((*p)->plus && num > 0)
 			str[i++] = '+';
 		else if ((*p)->space && num >= 0)
 			str[i++] = ' ';
 		i += for_precision(p, len, &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
 	}
-	
-
-	
-	
-	/*if ((*p)->plus && num > 0)				// FLAG +
-		str[i++] = '+';
-	if (num < 0)
-	{
-		str[i++] = '-';
-		num = num * (-1);
-	}
-	else if ((*p)->space && !(*p)->plus)	// FLAG space (_)
-		str[i++] = ' ';
-	i += for_precision(p, len, &str[i]);
-	if ((*p)->zero)							// FLAG 0
-		i += simvol_out(p, len, '0', &str[i]);
-	if ((*p)->width > len && !(*p)->minus)
-		i += simvol_out(p, len, ' ', &str[i]);
-	ft_strcpy(&str[i], ft_itoa(num));
-	if ((*p)->minus)						// FLAG -
-		i += simvol_out(p, len, ' ', &str[i]);*/
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	return (0);
@@ -117,36 +96,38 @@ int		ft_i(t_printf **p)
 // integer '10' unsigned; FLAGS 0-
 int		ft_u(t_printf **p)
 {
-	unsigned int	num;
-	int				len;
-	char	*str;
-	int		i;
+	uintmax_t	num;
+	int			len;
+	int			len_str;
+	char		*str;
+	int			i;
 
 	i = 0;
-	num = (*p)->uint_val; //va_arg((*p)->ap, unsigned int);
+	num = (*p)->uint_val;
 	len = len_nbr(num);
-	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
+	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width));
+	str = ft_strnew(len_str + 1);
 	if (!str)
 		return (1);
-//	if ((*p)->plus && num > 0)				// FLAG +
-//		write(1, "+", 1);
-	/*if (num < 0)
+	if ((*p)->minus)
 	{
-		write(1, "-", 1);
-		num = num * (-1);
+		i += for_precision(p, len, &str[i]);
+		ft_strcpy(&str[i], ft_itoa(num));
+		i += len;
+		i += simvol_out(p, len, ' ', &str[i]);
 	}
-	else */
-	if ((*p)->space && !(*p)->plus)	// FLAG space (_)
-		str[i++] = ' '; //write(1, " ", 1);
-	i += for_precision(p, len, &str[i]);
-	if ((*p)->zero)							// FLAG 0
+	else if ((*p)->zero)
+	{
+		i += for_precision(p, len, &str[i]);
 		i += simvol_out(p, len, '0', &str[i]);
-	if ((*p)->width > len && !(*p)->minus)
+		ft_strcpy(&str[i], ft_itoa(num));
+	}
+	else
+	{
 		i += simvol_out(p, len, ' ', &str[i]);
-	ft_strcpy(&str[i], ft_itoa(num));
-	if ((*p)->minus)						// FLAG -
-		i += simvol_out(p, len, ' ', &str[i]);
-	
+		i += for_precision(p, len, &str[i]);
+		ft_strcpy(&str[i], ft_itoa(num));
+	}
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	return (0);
@@ -155,38 +136,56 @@ int		ft_u(t_printf **p)
 // integer '8' unsigned
 int		ft_o(t_printf **p)
 {
-	int		num;
-	char	*str;
-	char	*trans;
-	int		len;
-	int		i;
+	uintmax_t	num;
+	char		*str;
+	char		*trans;
+	int			len;
+	int			len_str;
+	int			i;
 
 	i = 0;
-	num = (*p)->int_val; //va_arg((*p)->ap, int);
-	if (num < 0)
-		return (1);
+	num = (*p)->uint_val;
 	trans = ft_strnew(len_nbr(num) * 2);
-	str = ft_strnew(len_nbr(num) + (*p)->width + (*p)->precision + (*p)->space + 2);
-	if (!str)
+	if (!trans)
 		return (1);
 	len = transform(num, 8, '0', trans) + 1;
+	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width));
+	str = ft_strnew(len_str + 1);
+	if (!str)
+		return (1);
 	if ((*p)->hash)
 		len++;
-	i += for_precision(p, len, &str[i]);
-	if ((*p)->zero)							// FLAG 0
-		i += simvol_out(p, len, '0', &str[i]);
-	if ((*p)->width > len && !(*p)->minus)
-		i += simvol_out(p, len, ' ', &str[i]);
-	if ((*p)->hash)
+	if ((*p)->minus)
 	{
-		str[i++] = '0'; //write(1, "0", 1);
-		len--;
-	}
-	ft_strcpy(&str[i], trans); //write(1, str, len);
-	if ((*p)->minus)						// FLAG -
+		if ((*p)->hash)
+			str[i++] = '0';
+		i += for_precision(p, len, &str[i]);
+		ft_strcpy(&str[i], trans);
+		if ((*p)->hash)
+			i += len - 1;
+		else
+			i += len;
 		i += simvol_out(p, len, ' ', &str[i]);
-	if ((*p)->hash)
-		len--;
+	}
+	else if ((*p)->zero)
+	{
+		if ((*p)->hash)
+			str[i++] = '0';
+		i += for_precision(p, len, &str[i]);
+		i += simvol_out(p, len, '0', &str[i]);
+		ft_strcpy(&str[i], trans);
+	}
+	else
+	{
+		i += simvol_out(p, len, ' ', &str[i]);
+		i += for_precision(p, len, &str[i]);
+		if ((*p)->hash)
+		{
+			str[i++] = '0';
+			len--;
+		}
+		ft_strcpy(&str[i], trans);
+	}
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	free(trans);
@@ -195,42 +194,67 @@ int		ft_o(t_printf **p)
 
 int		ft_x_universe(t_printf **p, char c)
 {
-	int		num;
-	char	*str;
-	char	*trans;
-	int		len;
-	int		i;
+	uintmax_t	num;
+	char		*str;
+	char		*trans;
+	int			len;
+	int			len_str;
+	int			i;
 
 	i = 0;
-	num = (*p)->int_val; //va_arg((*p)->ap, int);
-	if (num < 0)
-		return (1);
+	num = (*p)->uint_val;
 	trans = ft_strnew(len_nbr(num) * 2);
-	str = ft_strnew(len_nbr(num) + (*p)->width + (*p)->precision + (*p)->space + 10);
-	if (!str)
+	if (!trans)
 		return (1);
 	len = transform(num, 16, c, trans) + 1;
+	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width));
+	str = ft_strnew(len_str + 1);
+	if (!str)
+		return (1);
 	if ((*p)->hash)
 		len += 2;
-	i += for_precision(p, len, &str[i]);
-	if ((*p)->zero)							// FLAG 0
-		i += simvol_out(p, len, '0', &str[i]);
-	if ((*p)->width > len && !(*p)->minus)
-		i += simvol_out(p, len, ' ', &str[i]);
-	if ((*p)->hash)
+	if ((*p)->minus)
 	{
-		str[i++] = '0'; //write(1, "0x", 2);
-		len -= 2;
-	}
-	ft_strcpy(&str[i], trans); //write(1, str, len);
-	if ((*p)->minus)						// FLAG -
+		if ((*p)->hash)
+		{
+			str[i++] = '0';
+			str[i++] = 'x';
+		}
+		i += for_precision(p, len, &str[i]);
+		ft_strcpy(&str[i], trans);
+		if ((*p)->hash)
+			i += len - 2;
+		else
+			i += len;
 		i += simvol_out(p, len, ' ', &str[i]);
-	if ((*p)->hash)
-		len--;
+	}
+	else if ((*p)->zero)
+	{
+		if ((*p)->hash)
+		{
+			str[i++] = '0';
+			str[i++] = 'x';
+		}
+		i += for_precision(p, len, &str[i]);
+		i += simvol_out(p, len, '0', &str[i]);
+		ft_strcpy(&str[i], trans);
+	}
+	else
+	{
+		i += simvol_out(p, len, ' ', &str[i]);
+		i += for_precision(p, len, &str[i]);
+		if ((*p)->hash)
+		{
+			str[i++] = '0';
+			str[i++] = 'x';
+			len -= 2;
+		}
+		ft_strcpy(&str[i], trans);
+	}
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	free(trans);
-	return (0);	
+	return (0);
 }
 
 // integer '16' undigned 0123456789abcdef

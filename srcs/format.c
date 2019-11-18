@@ -13,7 +13,7 @@
 #include "../includes/ft_printf.h"
 
 // transform int from '10' to 'X' system
-int		transform(int num, int system, char dec, char *str)
+int		transform(uintmax_t num, unsigned int system, char dec, char *str)
 {
 	char	c;
 	int		i;
@@ -24,8 +24,6 @@ int		transform(int num, int system, char dec, char *str)
 			c = num - 10 + dec;
 		else
 			c = num + '0';
-		// if (num > 9)
-		// 	c -= 10;
 		str[0] = c;
 		return (0);
 	}
@@ -41,7 +39,7 @@ int		transform(int num, int system, char dec, char *str)
 }
 
 // length of number to define width
-int		len_nbr(int num)
+int		len_nbr(intmax_t num)
 {
 	int	len;
 
@@ -63,7 +61,7 @@ int		simvol_out(t_printf **p, int len, char c, char *str)
 	i = 0;
 	while ((*p)->width > len)
 	{
-		str[i++] = c; //write(1, &c, 1);
+		str[i++] = c;
 		((*p)->width)--;
 	}
 	return (i);
@@ -76,7 +74,7 @@ int		for_precision(t_printf **p, int len, char *str)
 	i = 0;
 	while ((*p)->precision > len)
 	{
-		str[i++] = '0'; //write(1, "0", 1);
+		str[i++] = '0';
 		((*p)->precision)--;
 		if ((*p)->width > 0)
 			((*p)->width)--;

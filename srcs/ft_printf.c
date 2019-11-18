@@ -57,7 +57,7 @@ int		main(void)
 	a = 3;
 	b = -3;
 
-	ft_printf("NO_STANDART TYPE d (i): number > 0\n");
+	ft_printf("NO_STANDART TYPE d (i):\nnumber > 0\n");
 	ft_printf("This is test  0: |%3d|---|%5s|\n", a, "%3d");
 	ft_printf("This is test  1: |%+3d|---|%5s|\n", a, "%+3d");
 	ft_printf("This is test  2: |%-3d|---|%5s|\n", a, "%-3d");
@@ -71,7 +71,7 @@ int		main(void)
 	ft_printf("This is test 10: |% 03d|---|%5s|\n", a, "% 03d");
 	ft_printf("This is test 11: |% -3d|---|%5s|\n\n", a, "% -3d");
 
-	ft_printf("NO_STANDART TYPE d (i): number < 0\n");
+	ft_printf("number < 0\n");
 	ft_printf("This is test  0: |%3d|---|%5s|\n", b, "%3d");
 	ft_printf("This is test  1: |%+3d|---|%5s|\n", b, "%+3d");
 	ft_printf("This is test  2: |%-3d|---|%5s|\n", b, "%-3d");
@@ -85,7 +85,7 @@ int		main(void)
 	ft_printf("This is test 10: |% 03d|---|%5s|\n", b, "% 03d");
 	ft_printf("This is test 11: |% -3d|---|%5s|\n\n", b, "% -3d");
 
-/*	ft_printf("NO_STANDART TYPE u: number > 0\n");
+	ft_printf("NO_STANDART TYPE u:\nnumber > 0\n");
 	ft_printf("This is test  0: |%3u|---|%5s|\n", a, "%3u");
 	ft_printf("This is test  1: |%+3u|---|%5s|\n", a, "%+3u");
 	ft_printf("This is test  2: |%-3u|---|%5s|\n", a, "%-3u");
@@ -99,7 +99,7 @@ int		main(void)
 	ft_printf("This is test 10: |% 03u|---|%5s|\n", a, "% 03u");
 	ft_printf("This is test 11: |% -3u|---|%5s|\n\n", a, "% -3u");
 
-	ft_printf("NO_STANDART TYPE u: number < 0\n");
+	ft_printf("number < 0\n");
 	ft_printf("This is test  1: |%3u|---|%5s|\n", b, "%3u");
 	ft_printf("This is test  1: |%+3u|---|%5s|\n", b, "%+3u");
 	ft_printf("This is test  2: |%-3u|---|%5s|\n", b, "%-3u");
@@ -113,7 +113,7 @@ int		main(void)
 	ft_printf("This is test 10: |% 03u|---|%5s|\n", b, "% 03u");
 	ft_printf("This is test 11: |% -3u|---|%5s|\n\n", b, "% -3u");
 
-	ft_printf("NO_STANDART TYPE o: number > 0\n");
+	ft_printf("NO_STANDART TYPE o:\nnumber > 0\n");
 	ft_printf("This is test  0: |%3o|---|%5s|\n", a, "%3o");
 	ft_printf("This is test  1: |%+3o|---|%5s|\n", a, "%+3o");
 	ft_printf("This is test  2: |%-3o|---|%5s|\n", a, "%-3o");
@@ -131,7 +131,7 @@ int		main(void)
 	ft_printf("This is test 14: |% -3o|---|%5s|\n", a, "% -3o");
 	ft_printf("This is test 15: |% 03o|---|%5s|\n\n", a, "% 03o");
 
-	ft_printf("NO_STANDART TYPE o: number < 0\n");
+	ft_printf("number < 0\n");
 	ft_printf("This is test  0: |%3o|---|%5s|\n", b, "%3o");
 	ft_printf("This is test  1: |%+3o|---|%5s|\n", b, "%+3o");
 	ft_printf("This is test  2: |%-3o|---|%5s|\n", b, "%-3o");
@@ -149,7 +149,7 @@ int		main(void)
 	ft_printf("This is test 14: |% -3o|---|%5s|\n", b, "% -3o");
 	ft_printf("This is test 15: |% 03o|---|%5s|\n\n", b, "% 03o");
 
-	ft_printf("NO_STANDART TYPE x (X): number > 0\n");
+	ft_printf("NO_STANDART TYPE x (X):\nnumber > 0\n");
 	ft_printf("This is test  0: |%5x|---|%5s|\n", a, "%5x");
 	ft_printf("This is test  1: |%+5x|---|%5s|\n", a, "%+5x");
 	ft_printf("This is test  2: |%-5x|---|%5s|\n", a, "%-5x");
@@ -167,7 +167,7 @@ int		main(void)
 	ft_printf("This is test 14: |% -5x|---|%5s|\n", a, "% -5x");
 	ft_printf("This is test 15: |% 05x|---|%5s|\n\n", a, "% 05x");
 
-	ft_printf("NO_STANDART TYPE x (X): number < 0\n");
+	ft_printf("number < 0\n");
 	ft_printf("This is test  0: |%5x|---|%5s|\n", b, "%5x");
 	ft_printf("This is test  1: |%+5x|---|%5s|\n", b, "%+5x");
 	ft_printf("This is test  2: |%-5x|---|%5s|\n", b, "%-5x");
@@ -184,6 +184,6 @@ int		main(void)
 	ft_printf("This is test 13: |%-05x|---|%5s|\n", b, "%-05x");
 	ft_printf("This is test 14: |% -5x|---|%5s|\n", b, "% -5x");
 	ft_printf("This is test 15: |% 05x|---|%5s|\n", b, "% 05x");
-*/
+
 	return (0);
 }

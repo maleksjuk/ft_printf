@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <inttypes.h>
 #include "../libft/includes/libft.h"
 
 #include <stdio.h>
@@ -52,14 +53,13 @@ int 	ft_choose_type(t_printf **p);
 void	ft_choose_value(t_printf **p);
 
 // format.c
-int		transform(int num, int system, char dec, char *str);
-int		len_nbr(int num);
+int		transform(uintmax_t num, unsigned int system, char dec, char *str);
+int		len_nbr(intmax_t num);
 int		simvol_out(t_printf **p, int len, char c, char *str);
 int		for_precision(t_printf **p, int len, char *str);
 
 // numbers.c
 //char	*transform(int num, int system, char dec);
-int		len_nbr(int num);
 int		ft_d(t_printf **p);
 int		ft_i(t_printf **p);
 int		ft_u(t_printf **p);

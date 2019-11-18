@@ -1,4 +1,5 @@
-NO_STANDART TYPE d (i): number > 0
+NO_STANDART TYPE d (i):
+number > 0
 This is test  0: |  3|---|  %3d|
 This is test  1: | +3|---| %+3d|
 This is test  2: |3  |---| %-3d|
@@ -12,7 +13,7 @@ This is test  9: |+03|---|%0+3d|
 This is test 10: | 03|---|% 03d|
 This is test 11: | 3 |---|% -3d|
 
-NO_STANDART TYPE d (i): number < 0
+number < 0
 This is test  0: | -3|---|  %3d|
 This is test  1: | -3|---| %+3d|
 This is test  2: |-3 |---| %-3d|
@@ -26,3 +27,105 @@ This is test  9: |-03|---|%0+3d|
 This is test 10: |-03|---|% 03d|
 This is test 11: |-3 |---|% -3d|
 
+NO_STANDART TYPE u:
+number > 0
+This is test  0: |  3|---|  %3u|
+This is test  1: |  3|---| %+3u|
+This is test  2: |3  |---| %-3u|
+This is test  3: |  3|---| % 3u|
+This is test  4: |003|---| %03u|
+This is test  5: |  3|---|% +3u|
+This is test  6: |3  |---|% -3u|
+This is test  7: |3  |---|%+-3u|
+This is test  8: |3  |---|%0-3u|
+This is test  9: |003|---|%0+3u|
+This is test 10: |003|---|% 03u|
+This is test 11: |3  |---|% -3u|
+
+number < 0
+This is test  1: |-3|---|  %3u|
+This is test  1: |-3|---| %+3u|
+This is test  2: |-3|---| %-3u|
+This is test  3: |-3|---| % 3u|
+This is test  4: |-3|---| %03u|
+This is test  5: |-3|---|% +3u|
+This is test  6: |-3|---|% -3u|
+This is test  7: |-3|---|%+-3u|
+This is test  8: |-3|---|%0-3u|
+This is test  9: |-3|---|%0+3u|
+This is test 10: |-3|---|% 03u|
+This is test 11: |-3|---|% -3u|
+
+NO_STANDART TYPE o:
+number > 0
+This is test  0: |  3|---|  %3o|
+This is test  1: |  3|---| %+3o|
+This is test  2: |3  |---| %-3o|
+This is test  3: |  3|---|  % o|
+This is test  4: | 03|---| %#3o|
+This is test  5: |003|---| %03o|
+This is test  6: | 03|---|%#+3o|
+This is test  7: |03 |---|%#-3o|
+This is test  8: |003|---|%#03o|
+This is test  9: | 03|---|% #3o|
+This is test 10: |3  |---|%+-3o|
+This is test 11: |003|---|%+03o|
+This is test 12: |  3|---|% +3o|
+This is test 13: |3  |---|%-03o|
+This is test 14: |3  |---|% -3o|
+This is test 15: |003|---|% 03o|
+
+number < 0
+This is test  0: |37777777775|---|  %3o|
+This is test  1: |37777777775|---| %+3o|
+This is test  2: |37777777775|---| %-3o|
+This is test  3: |37777777775|---|  % o|
+This is test  4: |037777777775|---| %#3o|
+This is test  5: |37777777775|---| %03o|
+This is test  6: |037777777775|---|%#+3o|
+This is test  7: |037777777775|---|%#-3o|
+This is test  8: |037777777775|---|%#03o|
+This is test  9: |037777777775|---|% #3o|
+This is test 10: |37777777775|---|%+-3o|
+This is test 11: |37777777775|---|%+03o|
+This is test 12: |37777777775|---|% +3o|
+This is test 13: |37777777775|---|%-03o|
+This is test 14: |37777777775|---|% -3o|
+This is test 15: |37777777775|---|% 03o|
+
+NO_STANDART TYPE x (X):
+number > 0
+This is test  0: |    3|---|  %5x|
+This is test  1: |    3|---| %+5x|
+This is test  2: |3    |---| %-5x|
+This is test  3: |    3|---| % 5x|
+This is test  4: |  0x3|---| %#5x|
+This is test  5: |00003|---| %05x|
+This is test  6: |  0x3|---|%#+5x|
+This is test  7: |0x3  |---|%#-5x|
+This is test  8: |0x003|---|%#05x|
+This is test  9: |  0x3|---|% #5x|
+This is test 10: |3    |---|%+-5x|
+This is test 11: |00003|---|%+05x|
+This is test 12: |    3|---|% +5x|
+This is test 13: |3    |---|%-05x|
+This is test 14: |3    |---|% -5x|
+This is test 15: |00003|---|% 05x|
+
+number < 0
+This is test  0: |fffffffd|---|  %5x|
+This is test  1: |fffffffd|---| %+5x|
+This is test  2: |fffffffd|---| %-5x|
+This is test  3: |fffffffd|---| % 5x|
+This is test  4: |0xfffffffd|---| %#5x|
+This is test  5: |fffffffd|---| %05x|
+This is test  6: |0xfffffffd|---|%#+5x|
+This is test  7: |0xfffffffd|---|%#-5x|
+This is test  8: |0xfffffffd|---|%#05x|
+This is test  9: |0xfffffffd|---|% #5x|
+This is test 10: |fffffffd|---|%+-5x|
+This is test 11: |fffffffd|---|%+05x|
+This is test 12: |fffffffd|---|% +5x|
+This is test 13: |fffffffd|---|%-05x|
+This is test 14: |fffffffd|---|% -5x|
+This is test 15: |fffffffd|---|% 05x|

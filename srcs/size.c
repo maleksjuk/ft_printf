@@ -2,7 +2,7 @@
 
 void	ft_uint_value(t_printf **p)
 {
-	uintmax_t val;
+	uintmax_t	val;
 
 	if ((*p)->size == 'H')
 		val = (unsigned char)(va_arg((*p)->ap, unsigned int));
@@ -19,7 +19,7 @@ void	ft_uint_value(t_printf **p)
 
 void	ft_int_value(t_printf **p)
 {
-	intmax_t val;
+	intmax_t	val;
 
 	if ((*p)->size == 'H')
 		val = (signed char)(va_arg((*p)->ap, int));
@@ -36,7 +36,8 @@ void	ft_int_value(t_printf **p)
 
 void	ft_choose_value(t_printf **p)
 {
-	if ((*p)->type == 'u')
+	if ((*p)->type == 'u' || (*p)->type == 'o' ||
+		(*p)->type == 'x' || (*p)->type == 'X')
 		ft_uint_value(p);
 	else if ((*p)->type == 's')
 		(*p)->str_val = (char *)(va_arg((*p)->ap, char *));
