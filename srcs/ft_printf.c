@@ -52,12 +52,15 @@ int		ft_printf(const char* format, ...)
 
 int		main(void)
 {
-	int	a, b;
+	int		a, b;
+	char	c;
+	char	*str = "string";
 
 	a = 3;
 	b = -3;
+	c = 'M';
 
-	ft_printf("NO_STANDART TYPE d (i):\nnumber > 0\n");
+/*	ft_printf("NO_STANDART TYPE d (i):\nnumber > 0\n");
 	ft_printf("This is test  0: |%3d|---|%5s|\n", a, "%3d");
 	ft_printf("This is test  1: |%+3d|---|%5s|\n", a, "%+3d");
 	ft_printf("This is test  2: |%-3d|---|%5s|\n", a, "%-3d");
@@ -184,6 +187,42 @@ int		main(void)
 	ft_printf("This is test 13: |%-05x|---|%5s|\n", b, "%-05x");
 	ft_printf("This is test 14: |% -5x|---|%5s|\n", b, "% -5x");
 	ft_printf("This is test 15: |% 05x|---|%5s|\n", b, "% 05x");
+
+	ft_printf("NO_STANDART TYPE c:\n");
+	ft_printf("This is test  0: |%5c|---|%5s|\n", c, "%5c");
+	ft_printf("This is test  1: |%+5c|---|%5s|\n", c, "%+5c");
+	ft_printf("This is test  2: |%-5c|---|%5s|\n", c, "%-5c");
+	ft_printf("This is test  3: |% 5c|---|%5s|\n", c, "% 5c");
+	ft_printf("This is test  4: |%#5c|---|%5s|\n", c, "%#5c");
+	ft_printf("This is test  5: |%05c|---|%5s|\n", c, "%05c");
+	ft_printf("This is test  6: |%#+5c|---|%5s|\n", c, "%#+5c");
+	ft_printf("This is test  7: |%#-5c|---|%5s|\n", c, "%#-5c");
+	ft_printf("This is test  8: |%#05c|---|%5s|\n", c, "%#05c");
+	ft_printf("This is test  9: |% #5c|---|%5s|\n", c, "% #5c");
+	ft_printf("This is test 10: |%+-5c|---|%5s|\n", c, "%+-5c");
+	ft_printf("This is test 11: |%+05c|---|%5s|\n", c, "%+05c");
+	ft_printf("This is test 12: |% +5c|---|%5s|\n", c, "% +5c");
+	ft_printf("This is test 13: |%-05c|---|%5s|\n", c, "%-05c");
+	ft_printf("This is test 14: |% -5c|---|%5s|\n", c, "% -5c");
+	ft_printf("This is test 15: |% 05c|---|%5s|\n", c, "% 05c");
+*/
+	printf("NO_STANDART TYPE s:\n");
+	printf("This is test  0: |%5s|---|%5s|\n", str, "%5s");
+	printf("This is test  1: |%+5s|---|%5s|\n", str, "%+5s");
+	printf("This is test  2: |%-5s|---|%5s|\n", str, "%-5s");
+	printf("This is test  3: |% 5s|---|%5s|\n", str, "% 5s");
+	printf("This is test  4: |%#5s|---|%5s|\n", str, "%#5s");
+	printf("This is test  5: |%05s|---|%5s|\n", str, "%05s");
+	printf("This is test  6: |%#+5s|---|%5s|\n", str, "%#+5s");
+	printf("This is test  7: |%#-5s|---|%5s|\n", str, "%#-5s");
+	printf("This is test  8: |%#05s|---|%5s|\n", str, "%#05s");
+	printf("This is test  9: |% #5s|---|%5s|\n", str, "% #5s");
+	printf("This is test 10: |%+-5s|---|%5s|\n", str, "%+-5s");
+	printf("This is test 11: |%+05s|---|%5s|\n", str, "%+05s");
+	printf("This is test 12: |% +5s|---|%5s|\n", str, "% +5s");
+	printf("This is test 13: |%-05s|---|%5s|\n", str, "%-05s");
+	printf("This is test 14: |% -5s|---|%5s|\n", str, "% -5s");
+	printf("This is test 15: |% 05s|---|%5s|\n", str, "% 05s");
 
 	return (0);
 }

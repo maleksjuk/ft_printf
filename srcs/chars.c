@@ -18,11 +18,12 @@ int	ft_c(t_printf **p)
 	char	*str;
 	int		i;
 
-	i = 0;
 	c = (char)(*p)->int_val;
-	str = ft_strnew(1 + (*p)->width + (*p)->precision + (*p)->space + 2);
+	i = ft_max((*p)->precision, (*p)->width);
+	str = ft_strnew(i + 1);
 	if (!str)
 		return (1);
+	i = 0;
 	if ((*p)->width > 1 && !(*p)->minus)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
 	str[i++] = c;
