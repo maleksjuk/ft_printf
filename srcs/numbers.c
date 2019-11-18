@@ -17,70 +17,71 @@ int		ft_d(t_printf **p)
 {
 	int		num;
 	int		len;
+	int		len_str;
 	char	*str;
-//	char	*trans;
 	int		i;
+	int		znak;	// '+', '-' or ' '
 
 	i = 0;
+	znak = 0;
 	num = (*p)->int_val;
+	if (num < 0 || (*p)->plus || (*p)->space)
+		znak = 1;
 	len = len_nbr(num);
-//	trans = ft_strnew(len_nbr(num) * 2);
-//	len = transform(num, 10, '0', trans) + 1;
-	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
+	if (znak)
+		len++;
+	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width)) + znak;
+	str = ft_strnew(len_str + 1);
 	if (!str)
 		return (1);
-	
 	if ((*p)->minus)
 	{
 		if (num < 0)
 		{
 			str[i++] = '-';
-			num = num * (-1);
+			num *= -1;
 		}
-		else
-		{
-			len--;
-			if ((*p)->plus)
-				str[i++] = '+';
-			else if ((*p)->space)	// FLAG space (_)
-				str[i++] = ' ';
-			else
-				len++;
-		}
+		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+			str[i++] = '+';
+		else if ((*p)->space && num >= 0)
+			str[i++] = ' ';
 		i += for_precision(p, len, &str[i]);
-		if ((*p)->zero)							// FLAG 0
-			i += simvol_out(p, len, '0', &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
 		i += len;
 		i += simvol_out(p, len, ' ', &str[i]);
 	}
-	else
+	else if ((*p)->zero)
 	{
-		if (!(*p)->zero)
-			i += ((*p)->plus || (*p)->space) ?
-				simvol_out(p, len - 1, ' ', &str[i]) :
-				simvol_out(p, len, ' ', &str[i]);
 		if (num < 0)
 		{
 			str[i++] = '-';
-			num = num * (-1);
+			num *= -1;
 		}
-		else
-		{
-			len--;
-			if ((*p)->plus)
-				str[i++] = '+';
-			else if ((*p)->space)	// FLAG space (_)
-				str[i++] = ' ';
-			else
-				len++;
-		}
+		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+			str[i++] = '+';
+		else if ((*p)->space && num >= 0)
+			str[i++] = ' ';
 		i += for_precision(p, len, &str[i]);
-		if ((*p)->zero)							// FLAG 0
-			i += simvol_out(p, len, '0', &str[i]);
+		i += simvol_out(p, len, '0', &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
-		i += len;
 	}
+	else
+	{
+		i += simvol_out(p, len, ' ', &str[i]);
+		if (num < 0)
+		{
+			str[i++] = '-';
+			num *= -1;
+		}
+		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
+			str[i++] = '+';
+		else if ((*p)->space && num >= 0)
+			str[i++] = ' ';
+		i += for_precision(p, len, &str[i]);
+		ft_strcpy(&str[i], ft_itoa(num));
+	}
+	
+
 	
 	
 	/*if ((*p)->plus && num > 0)				// FLAG +
