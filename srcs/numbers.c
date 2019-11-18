@@ -34,7 +34,7 @@ int		ft_d(t_printf **p)
 	str = ft_strnew(len_str + 1);
 	if (!str)
 		return (1);
-	if ((*p)->minus)
+	if ((*p)->minus)		//////////////////
 	{
 		if (num < 0)
 		{
@@ -47,10 +47,12 @@ int		ft_d(t_printf **p)
 			str[i++] = ' ';
 		i += for_precision(p, len, &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
+		if (znak)
+			i--;
 		i += len;
 		i += simvol_out(p, len, ' ', &str[i]);
 	}
-	else if ((*p)->zero)
+	else if ((*p)->zero)	//////////////////
 	{
 		if (num < 0)
 		{
@@ -59,13 +61,13 @@ int		ft_d(t_printf **p)
 		}
 		else if ((*p)->plus && num > 0)		// CHECK 0 (+0)
 			str[i++] = '+';
-		else if ((*p)->space && num >= 0)
+		else if ((*p)->space)
 			str[i++] = ' ';
 		i += for_precision(p, len, &str[i]);
 		i += simvol_out(p, len, '0', &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
 	}
-	else
+	else					///////////////////
 	{
 		i += simvol_out(p, len, ' ', &str[i]);
 		if (num < 0)
