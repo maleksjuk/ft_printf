@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
+/*   Updated: 2019/11/19 19:04:45 by obanshee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <math.h>
-#include "../libft/includes/libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <math.h>
+# include "../libft/includes/libft.h"
 
-#include <stdio.h>
+# include <stdio.h>
 
 typedef struct			s_printf
 {
@@ -23,7 +35,7 @@ typedef struct			s_printf
 	int 				hash;
 	int 				width;
 	int 				precision;
-	double 				double_val;
+	long double 		double_val;
 	intmax_t			int_val;
 	uintmax_t			uint_val;
 	char				*str_val;

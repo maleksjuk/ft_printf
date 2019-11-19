@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/19 19:04:09 by obanshee          #+#    #+#             */
+/*   Updated: 2019/11/19 19:04:10 by obanshee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 int 	ft_final(t_printf **p)
@@ -46,15 +58,29 @@ int		ft_printf(const char* format, ...)
 	}
 	ft_final(&p);
 	va_end(p->ap);
-//	ft_putchar('\n');
 	return (p->final_len);
 }
 
 int		main(void)
 {
-//	ft_printf("%.10f\n", 9873.0009999);
+//	ft_printf("%.1f\n", 46.5);
+//	printf("%.1f\n", 46.5);
+//	ft_printf("%.0f\n", 46.5);
+//	printf("%.0f\n", 46.5);
+//	ft_printf("%.10f\n", 12321.3293923499);
+//	printf("%.10f\n", 12321.3293923499);
+//	ft_printf("%.10f\n", 29301.9876319200001);
+//	printf("%.10f\n", 29301.9876319200001);
+//	ft_printf("%.3f\n", 1002.929);
+//	printf("%.3f\n", 1002.929);
+//	ft_printf("%.10f\n", 87381298.309800499);
+//	printf("%.10f\n", 87381298.309800499);
+//	ft_printf("%.10f\n", 1.1111119);
+//	printf("%.10f\n", 1.1111119);
+//	ft_printf("%.10f\n", 1002.99999125367);
+//	printf("%.10f\n", 1002.99999125367);
 
-	int		a, b, e;
+/*	int		a, b, e;
 	char	c;
 	char	*str = "string";
 
@@ -226,6 +252,6 @@ int		main(void)
 	ft_printf("This is test 13: |%-05.*s|---|%5s|\n", e, str, "%-05.*s");
 	ft_printf("This is test 14: |% -5.*s|---|%5s|\n", e, str, "% -5.*s");
 	ft_printf("This is test 15: |% 05.*s|---|%5s|\n", e, str, "% 05.*s");
-
+*/
 	return (0);
 }
