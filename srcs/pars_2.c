@@ -68,11 +68,11 @@ int 	ft_choose_type(t_printf **p)
 	int i;
 
 	i = -1;
-	int (*ft_type[8])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_X, ft_c, ft_s};
+	int (*ft_type[9])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_X, ft_c, ft_s, ft_f};
 	while ((*p)->spec_mask[++i])
 		if ((*p)->spec_mask[i] == (*p)->type)
 			break;
-	if (i < 8)
+	if (i < 9)
 		ft_type[i](p);
 	return (0);
 }

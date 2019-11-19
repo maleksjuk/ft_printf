@@ -1,17 +1,167 @@
+NO_STANDART TYPE d (i):
+number > 0
+This is test  0: | 12|---|%3.*d|
+This is test  1: |+12|---|%+3.*d|
+This is test  2: |12 |---|%-3.*d|
+This is test  3: | 12|---|% 3.*d|
+This is test  4: | 12|---|%03.*d|
+This is test  5: |+12|---|% +3.*d|
+This is test  6: | 12|---|% -3.*d|
+This is test  7: |+12|---|%+-3.*d|
+This is test  8: |12 |---|%0-3.*d|
+This is test  9: |+12|---|%0+3.*d|
+This is test 10: | 12|---|% 03.*d|
+This is test 11: | 12|---|% -3.*d|
+
+number < 0
+This is test  0: | -03|---|%3.*d|
+This is test  1: | -03|---|%+3.*d|
+This is test  2: |-03|---|%-3.*d|
+This is test  3: | -03|---|% 3.*d|
+This is test  4: | -03|---|%03.*d|
+This is test  5: | -03|---|% +3.*d|
+This is test  6: |-03|---|% -3.*d|
+This is test  7: |-03|---|%+-3.*d|
+This is test  8: |-03|---|%0-3.*d|
+This is test  9: | -03|---|%0+3.*d|
+This is test 10: | -03|---|% 03.*d|
+This is test 11: |-03|---|% -3.*d|
+
+NO_STANDART TYPE u:
+number > 0
+This is test  0: |12|---|%3.*u|
+This is test  1: |12|---|%+3.*u|
+This is test  2: |12 |---|%-3.*u|
+This is test  3: |12|---|% 3.*u|
+This is test  4: |12|---|%03.*u|
+This is test  5: |12|---|% +3.*u|
+This is test  6: |12 |---|% -3.*u|
+This is test  7: |12 |---|%+-3.*u|
+This is test  8: |12 |---|%0-3.*u|
+This is test  9: |12|---|%0+3.*u|
+This is test 10: |12|---|% 03.*u|
+This is test 11: |12 |---|% -3.*u|
+
+number < 0
+This is test  1: |-3|---|%3.*u|
+This is test  1: |-3|---|%+3.*u|
+This is test  2: |-3|---|%-3.*u|
+This is test  3: |-3|---|% 3.*u|
+This is test  4: |-3|---|%03.*u|
+This is test  5: |-3|---|% +3.*u|
+This is test  6: |-3|---|% -3.*u|
+This is test  7: |-3|---|%+-3.*u|
+This is test  8: |-3|---|%0-3.*u|
+This is test  9: |-3|---|%0+3.*u|
+This is test 10: |-3|---|% 03.*u|
+This is test 11: |-3|---|% -3.*u|
+
+NO_STANDART TYPE o:
+number > 0
+This is test  0: |14|---|%3.*o|
+This is test  1: |14|---|%+3.*o|
+This is test  2: |14 |---|%-3.*o|
+This is test  3: |14|---|% 3.*o|
+This is test  4: |014|---|%#3.*o|
+This is test  5: |14|---|%03.*o|
+This is test  6: |014|---|%#+3.*o|
+This is test  7: |014|---|%#-3.*o|
+This is test  8: |014|---|%#03.*o|
+This is test  9: |014|---|% #3.*o|
+This is test 10: |14 |---|%+-3.*o|
+This is test 11: |14|---|%+03.*o|
+This is test 12: |14|---|% +3.*o|
+This is test 13: |14 |---|%-03.*o|
+This is test 14: |14 |---|% -3.*o|
+This is test 15: |14|---|% 03.*o|
+
+number < 0
+This is test  0: |37777777775|---|%3.*o|
+This is test  1: |37777777775|---|%+3.*o|
+This is test  2: |37777777775|---|%-3.*o|
+This is test  3: |37777777775|---|% 3.*o|
+This is test  4: |037777777775|---|%#3.*o|
+This is test  5: |37777777775|---|%03.*o|
+This is test  6: |037777777775|---|%#+3.*o|
+This is test  7: |037777777775|---|%#-3.*o|
+This is test  8: |037777777775|---|%#03.*o|
+This is test  9: |037777777775|---|% #3.*o|
+This is test 10: |37777777775|---|%+-3.*o|
+This is test 11: |37777777775|---|%+03.*o|
+This is test 12: |37777777775|---|% +3.*o|
+This is test 13: |37777777775|---|%-03.*o|
+This is test 14: |37777777775|---|% -3.*o|
+This is test 15: |37777777775|---|% 03.*o|
+
+NO_STANDART TYPE x (X):
+number > 0
+This is test  0: |   0c|---|%5.*x|
+This is test  1: |   0c|---|%+5.*x|
+This is test  2: |0c   |---|%-5.*x|
+This is test  3: |   0c|---|% 5.*x|
+This is test  4: | 0x0c|---|%#5.*x|
+This is test  5: |   0c|---|%05.*x|
+This is test  6: | 0x0c|---|%#+5.*x|
+This is test  7: |0x0c |---|%#-5.*x|
+This is test  8: | 0x0c|---|%#05.*x|
+This is test  9: | 0x0c|---|% #5.*x|
+This is test 10: |0c   |---|%+-5.*x|
+This is test 11: |   0c|---|%+05.*x|
+This is test 12: |   0c|---|% +5.*x|
+This is test 13: |0c   |---|%-05.*x|
+This is test 14: |0c   |---|% -5.*x|
+This is test 15: |   0c|---|% 05.*x|
+
+number < 0
+This is test  0: |fffffffd|---|%5.*x|
+This is test  1: |fffffffd|---|%+5.*x|
+This is test  2: |fffffffd|---|%-5.*x|
+This is test  3: |fffffffd|---|% 5.*x|
+This is test  4: |0xfffffffd|---|%#5.*x|
+This is test  5: |fffffffd|---|%05.*x|
+This is test  6: |0xfffffffd|---|%#+5.*x|
+This is test  7: |0xfffffffd|---|%#-5.*x|
+This is test  8: |0xfffffffd|---|%#05.*x|
+This is test  9: |0xfffffffd|---|% #5.*x|
+This is test 10: |fffffffd|---|%+-5.*x|
+This is test 11: |fffffffd|---|%+05.*x|
+This is test 12: |fffffffd|---|% +5.*x|
+This is test 13: |fffffffd|---|%-05.*x|
+This is test 14: |fffffffd|---|% -5.*x|
+This is test 15: |fffffffd|---|% 05.*x|
+
+NO_STANDART TYPE c:
+This is test  0: |    M|---|%5.*c|
+This is test  1: |    M|---|%+5.*c|
+This is test  2: |M    |---|%-5.*c|
+This is test  3: |    M|---|% 5.*c|
+This is test  4: |    M|---|%#5.*c|
+This is test  5: |0000M|---|%05.*c|
+This is test  6: |    M|---|%#+5.*c|
+This is test  7: |M    |---|%#-5.*c|
+This is test  8: |0000M|---|%#05.*c|
+This is test  9: |    M|---|% #5.*c|
+This is test 10: |M    |---|%+-5.*c|
+This is test 11: |0000M|---|%+05.*c|
+This is test 12: |    M|---|% +5.*c|
+This is test 13: |M    |---|%-05.*c|
+This is test 14: |M    |---|% -5.*c|
+This is test 15: |0000M|---|% 05.*c|
+
 NO_STANDART TYPE s:
-This is test  0: |string|---|  %5s|
-This is test  1: |string|---| %+5s|
-This is test  2: |string|---| %-5s|
-This is test  3: |string|---| % 5s|
-This is test  4: |string|---| %#5s|
-This is test  5: |string|---| %05s|
-This is test  6: |string|---|%#+5s|
-This is test  7: |string|---|%#-5s|
-This is test  8: |string|---|%#05s|
-This is test  9: |string|---|% #5s|
-This is test 10: |string|---|%+-5s|
-This is test 11: |string|---|%+05s|
-This is test 12: |string|---|% +5s|
-This is test 13: |string|---|%-05s|
-This is test 14: |string|---|% -5s|
-This is test 15: |string|---|% 05s|
+This is test  0: |   st|---|%5.*s|
+This is test  1: |   st|---|%+5.*s|
+This is test  2: |st   |---|%-5.*s|
+This is test  3: |   st|---|% 5.*s|
+This is test  4: |   st|---|%#5.*s|
+This is test  5: |000st|---|%05.*s|
+This is test  6: |   st|---|%#+5.*s|
+This is test  7: |st   |---|%#-5.*s|
+This is test  8: |000st|---|%#05.*s|
+This is test  9: |   st|---|% #5.*s|
+This is test 10: |st   |---|%+-5.*s|
+This is test 11: |000st|---|%+05.*s|
+This is test 12: |   st|---|% +5.*s|
+This is test 13: |st   |---|%-05.*s|
+This is test 14: |st   |---|% -5.*s|
+This is test 15: |000st|---|% 05.*s|

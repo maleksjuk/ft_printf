@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:09:55 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/17 17:44:25 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:48:09 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	ft_c(t_printf **p)
 	if (!str)
 		return (1);
 	i = 0;
-	if ((*p)->width > 1 && !(*p)->minus)
+	if ((*p)->width > 1 && !(*p)->minus && !(*p)->zero)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
+	else if ((*p)->zero && !(*p)->minus)
+		i += simvol_out(p, 1, '0', &str[i]);
 	str[i++] = c;
 	if ((*p)->minus)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
@@ -40,36 +42,64 @@ int ft_s(t_printf **p)
 	int		len;
 	char	*str;
 	int		i;
-	int		j;
 
-	i = 0;
-	num = (*p)->str_val; //va_arg((*p)->ap, int);
+	num = (*p)->str_val;
 	len = ft_strlen(num);
-	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
+	i = ft_max(len, ft_max((*p)->precision, (*p)->width));
+	str = ft_strnew(i + 1);
 	if (!str)
 		return (1);
-	if ((*p)->precision && (*p)->width)
-		while ((*p)->width > (*p)->precision && !((*p)->minus))
+	i = 0;
+	if ((*p)->minus)
+	{
+		if ((*p)->precision > -1)
 		{
-			str[i++] = ' ';
-			((*p)->width)--;
+			len = 0;
+			while ((*p)->precision - i > 0)
+				str[i++] = num[len++];
+			i += simvol_out(p, i, ' ', &str[i]);
 		}
-//	if ((*p)->zero)							// FLAG 0
-//		i += simvol_out(p, len, '0', &str[i]);
-	if ((*p)->width > len && !(*p)->minus)
-		i += simvol_out(p, len, ' ', &str[i]);
-	j = 0;
-	if ((*p)->precision)// ft_putnbr(num); !!!!!!!!!!!!!!!!!!!!
-		while ((*p)->precision > j)
-			str[i++] = num[j++];
+		else
+		{
+			ft_strcpy(str, num);
+			i += simvol_out(p, len, ' ', &str[i]);
+		}
+	}
+	else if ((*p)->zero)
+	{
+		if ((*p)->precision > -1)
+		{
+			while ((*p)->width - (*p)->precision > i)
+				str[i++] = '0';
+			len = 0;
+			while ((*p)->precision - len > 0)
+				str[i++] = num[len++];
+		}
+		else
+		{
+			while ((*p)->width + i < len)
+				str[i++] = '0';
+			ft_strcpy(&str[i], num);
+		}
+	}
 	else
-		while (len > j)
-			str[i++] = num[j++];
-	if ((*p)->minus)						// FLAG -
-		i += simvol_out(p, len, ' ', &str[i]);
+	{
+		if ((*p)->precision > -1)
+		{
+			while ((*p)->width - (*p)->precision > i)
+				str[i++] = ' ';
+			len = 0;
+			while ((*p)->precision - len > 0)
+				str[i++] = num[len++];
+		}
+		else
+		{
+			i += simvol_out(p, len, ' ', str);
+			ft_strcpy(&str[i], num);
+		}
+	}
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
-//	ft_putstr((*p)->str_val);
 	return (0);
 }
 

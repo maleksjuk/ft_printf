@@ -21,7 +21,7 @@ FLAGS = -Wall -Werror -Wextra
 
 INC = -I ./includes/ft_printf.h -I ./$(LIBFT_PATH)includes/libft.h
 
-SRCS_NAME = ft_printf.c numbers.c format.c pars_1.c pars_2.c size.c chars.c
+SRCS_NAME = ft_printf.c numbers.c format.c pars_1.c pars_2.c size.c chars.c floats.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(SRCS_NAME:.c=.o))
