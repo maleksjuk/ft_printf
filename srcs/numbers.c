@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:31:12 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/19 18:57:28 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/20 19:27:11 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int		ft_d(t_printf **p)
 			str[i++] = '+';
 		else if ((*p)->space && num >= 0)
 			str[i++] = ' ';
+		// if ((*p)->precision > -1 && (*p)->width && (*p)->precision + 1 < (*p)->width)
+		// 	i--;
 		i += for_precision(p, len - znak, &str[i]);
 		ft_strcpy(&str[i], ft_itoa(num));
 		if (znak)
@@ -70,7 +72,7 @@ int		ft_d(t_printf **p)
 	else
 	{
 		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - 2, ' ', &str[i]);
+			i += simvol_out(p, len + (*p)->precision - len + znak, ' ', &str[i]);
 		else
 			i += simvol_out(p, len, ' ', &str[i]);
 		if (num < 0)
@@ -128,7 +130,7 @@ int		ft_u(t_printf **p)
 	else
 	{
 		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - 1, ' ', &str[i]);
+			i += simvol_out(p, len + (*p)->precision - len, ' ', &str[i]);
 		else
 			i += simvol_out(p, len, ' ', &str[i]);
 		i += for_precision(p, len, &str[i]);
@@ -186,7 +188,7 @@ int		ft_o(t_printf **p)
 	else
 	{
 		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - 1, ' ', &str[i]);
+			i += simvol_out(p, len + (*p)->precision - len, ' ', &str[i]);
 		else
 			i += simvol_out(p, len, ' ', &str[i]);
 		if ((*p)->hash)
