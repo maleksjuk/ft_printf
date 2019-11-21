@@ -6,7 +6,7 @@
 #    By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 15:46:00 by pguitar           #+#    #+#              #
-#    Updated: 2019/11/17 16:50:18 by obanshee         ###   ########.fr        #
+#    Updated: 2019/11/21 18:18:15 by obanshee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ SRCS_PATH = srcs/
 OBJ_PATH  = obj/
 LIBFT_PATH = libft/
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = #-Wall -Werror -Wextra
 
 INC = -I ./includes/ft_printf.h -I ./$(LIBFT_PATH)includes/libft.h
 
-SRCS_NAME = ft_printf.c numbers.c format.c pars_1.c pars_2.c size.c chars.c floats.c
+SRCS_NAME = ft_printf.c format.c pars_1.c pars_2.c size.c chars.c floats.c \
+	ft_d.c ft_u.c ft_o.c ft_x.c ft_p.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(SRCS_NAME:.c=.o))

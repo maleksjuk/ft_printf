@@ -65,6 +65,7 @@ int 	ft_search_precision(t_printf **p, int i)
 			}
 			else if ((*p)->format[i] >= '0' && (*p)->format[i] <= '9')
 			{
+				(*p)->precision = 0;
 				while ((*p)->format[i] >= '0' && (*p)->format[i] <= '9')
 					(*p)->precision = (*p)->precision * 10 + ((*p)->format[i++] - '0');
 			}

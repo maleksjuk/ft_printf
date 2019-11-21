@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:51:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/17 19:08:20 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:41:02 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int		transform(uintmax_t num, unsigned int system, char dec, char *str)
 	else
 	{
 		i = transform(num / system, system, dec, str) + 1;
-		c = num % system + dec;
-		if (num % system > 9)
-			c -= 10;
+		if (num % system <= 9)
+			c = num % system + '0';
+		else
+			c = num % system - 10 + dec;
 		str[i] = c;
 		return (i);
 	}

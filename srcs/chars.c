@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:09:55 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/19 18:48:09 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/21 19:05:25 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,12 @@ int ft_s(t_printf **p)
 			ft_strcpy(&str[i], num);
 		}
 	}
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
+	if ((*p)->final_str[0] == '\0')
+		(*p)->final_str = str;
+	else
+	{
+		(*p)->final_str = ft_strjoin((*p)->final_str, str);
+		free(str);
+	}
 	return (0);
 }
-
-int	ft_p(t_printf **p);

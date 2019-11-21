@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/19 19:05:18 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/21 18:51:52 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int 	ft_search_type(t_printf **p, int i)
 {
 	if ((*p)->format[i] != '\0' &&
-			ft_strchr((*p)->spec_mask, (*p)->format[i]))
+		ft_strchr((*p)->spec_mask, (*p)->format[i]))
 		(*p)->type = (*p)->format[i];
-	else
-		ft_putstr("wrong type\n");
 	return (++i);
 }
 
@@ -80,11 +78,16 @@ int 	ft_choose_type(t_printf **p)
 	int i;
 
 	i = -1;
-	int (*ft_type[9])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_X, ft_c, ft_s, ft_f};
+	int (*ft_type[10])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_X, ft_c, ft_s, ft_f, ft_p};
+	if ((*p)->type == 0)
+	{
+		ft_type[6](p);
+		return (0);
+	}
 	while ((*p)->spec_mask[++i])
 		if ((*p)->spec_mask[i] == (*p)->type)
 			break;
-	if (i < 9)
+	if (i < 10)
 		ft_type[i](p);
 	return (0);
 }

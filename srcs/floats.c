@@ -12,6 +12,37 @@
 
 #include "../includes/ft_printf.h"
 
+double	ft_modulo(double num)
+{
+	double modulo;
+
+	modulo = 1;
+	while ((int)(num /= 10) != 0)
+		modulo *= 10;
+	return (modulo);
+}
+
+int		ft_nine(char **str, int *i, double num, int precision)
+{
+	int j;
+
+	num *= 10;
+	j = 0;
+	while (j++ < precision)
+	{
+		if (num < 9)
+			return (0);
+		num = (num - (int)num) * 10;
+	}
+	if (num <= 5)
+		return (0);
+	j = 0;
+	while (j++ < precision)
+		(*str)[(*i)++] = '0';
+	(*str)[(*i)] = '\0';
+	return (1);
+}
+
 void	ft_right_part(char **str, int *i, double num, int precision)
 {
 	int		j;
@@ -19,8 +50,6 @@ void	ft_right_part(char **str, int *i, double num, int precision)
 
 	num *= 10;
 	j = 0;
-	if (precision != 0)
-		(*str)[(*i)++] = '.';
 	while (j++ < precision)
 	{
 		if (precision - j == 0)
@@ -41,24 +70,53 @@ void	ft_right_part(char **str, int *i, double num, int precision)
 	(*str)[(*i)] = '\0';
 }
 
-void	ft_left_part(double *num, char **str, int *i, double modulo)
+int		ft_check_rounding(double num, intmax_t	*x, int precision)
 {
-	while ((int)*num != 0)
+	int i;
+
+	i = 0;
+	num *= 10;
+	if (precision == 0)
+		(*x)++;
+	else if ((int)num == 9)
 	{
-		(*str)[(*i)++] = (char)((*num / modulo) + 48);
-		*num -= (int)(*num / modulo) * modulo;
-		modulo /= 10;
+		while (i < precision)
+		{
+			if (num >= 9)
+				num = (num - (int)(num)) * 10;
+			else
+				break ;
+			i++;
+		}
+		if (num > 5 && i == precision)
+			(*x)++;
 	}
+	return (0);
 }
 
-double	ft_modulo(double num)
+void	ft_left_part(double *num, char **str, int *i, t_printf **p)
 {
-	double modulo;
+	intmax_t	x;
+	double		modulo;
+	intmax_t	modulo_tmp;
 
-	modulo = 1;
-	while ((int)(num /= 10) != 0)
-		modulo *= 10;
-	return (modulo);
+	x = 0;
+	modulo = ft_modulo(*num);
+	modulo_tmp = (intmax_t)modulo;
+	while ((int)*num != 0)
+	{
+		x = x + ((intmax_t)(*num / modulo)) * modulo;
+		*num -= (int)(*num / modulo) * modulo;
+		modulo /= 10;
+		if (modulo < 1 && (*num * 10) > 5)
+			ft_check_rounding(*num, &x, (*p)->precision);
+	}
+	while (x != 0)
+	{
+		(*str)[(*i)++] = (char)(x / modulo_tmp) + 48;
+		x -= (x / modulo_tmp) * modulo_tmp;
+		modulo_tmp /= 10;
+	}
 }
 
 int 	ft_f(t_printf **p)
@@ -75,7 +133,9 @@ int 	ft_f(t_printf **p)
 		(*p)->final_str = ft_strjoin((*p)->final_str, "inf");
 		return (1);
 	}
-	len = len_nbr(num);
+	len = len_nbr((intmax_t)num);
+	if ((*p)->precision == -1)
+		(*p)->precision = 6;
 	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
 	if (!str)
 		return (1);
@@ -88,8 +148,11 @@ int 	ft_f(t_printf **p)
 	}
 	else if ((*p)->space && !(*p)->plus)    // FLAG space (_)
 		str[i++] = ' '; //write(1, " ", 1);
-	ft_left_part(&num, &str, &i, ft_modulo(num));
-	ft_right_part(&str, &i, num, (*p)->precision);
+	ft_left_part(&num, &str, &i, p);
+	if ((*p)->precision != 0)
+		str[i++] = '.';
+	if (!(ft_nine(&str, &i, num, (*p)->precision)))
+		ft_right_part(&str, &i, num, (*p)->precision);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	return (0);
