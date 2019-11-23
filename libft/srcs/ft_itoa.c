@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguitar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:16:44 by pguitar           #+#    #+#             */
-/*   Updated: 2019/04/09 15:16:45 by pguitar          ###   ########.fr       */
+/*   Updated: 2019/11/23 18:27:17 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static	char	*get_num(int n, int len, int flag)
+static	char	*get_num(intmax_t n, int len)
 {
 	char *str;
 
@@ -24,8 +24,6 @@ static	char	*get_num(int n, int len, int flag)
 		str[0] = '0';
 		return (str);
 	}
-	if (flag == 1)
-		str[0] = '-';
 	while (n != 0)
 	{
 		str[len] = n % 10 + '0';
@@ -35,24 +33,21 @@ static	char	*get_num(int n, int len, int flag)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(intmax_t n)
 {
-	int len;
-	int n_len;
-	int flag;
+	int			len;
+	intmax_t	n_len;
+	int 		flag;
 
 	len = 0;
 	flag = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n < 0)
 	{
 		n = -n;
-		len++;
 		flag = 1;
 	}
 	n_len = n;
 	while (n_len /= 10)
 		len++;
-	return (get_num(n, len, flag));
+	return (get_num(n, len));
 }

@@ -6,93 +6,127 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 14:30:47 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:20:48 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-// integer '10' signed; FLAGS 0+-_
+void	d_minus(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
+{
+	if (num < 0)
+	{
+		str[tab[2]++] = '-';
+		num *= -1;
+	}
+	else if ((*p)->plus && num >= 0)
+		str[tab[2]++] = '+';
+	else if ((*p)->space && num >= 0)
+		str[tab[2]++] = ' ';
+	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+	if (tab[3])
+		tab[2]--;
+	tab[2] += tab[0];
+	tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+}
+
+void	d_zero(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
+{
+	if (num < 0)
+	{
+		str[tab[2]++] = '-';
+		num *= -1;
+	}
+	else if ((*p)->plus && num >= 0)
+		str[tab[2]++] = '+';
+	else if ((*p)->space)
+		str[tab[2]++] = ' ';
+	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
+	tab[2] += simvol_out(p, tab[0], '0', &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+}
+
+void	d_default(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
+{
+	int	help;
+
+	help = tab[0] + (*p)->precision - tab[0] + tab[3];
+	if ((*p)->precision > 0)
+		tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
+	else
+		tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+	if (num < 0)
+	{
+		str[tab[2]++] = '-';
+		num *= -1;
+	}
+	else if ((*p)->plus && num >= 0)
+		str[tab[2]++] = '+';
+	else if ((*p)->space && num >= 0)
+		str[tab[2]++] = ' ';
+	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+}
+
+char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
+{
+	char	*num_str;
+
+	if (num / 10 == MAX_INT && num % 10 == -8)
+	{
+		num_str = ft_strnew(22);
+		if (!num_str)
+			return (NULL);
+		ft_strcpy(num_str, "9223372036854775808\0");
+	}
+	else
+		num_str = ft_itoa(num);
+	if (num_str[0] == '-')
+	{
+	//	num_str[0] = '\0';
+	//	num_str = &num_str[1];
+	}
+	if (num == 0 && (*p)->precision == 0)
+	{
+		num_str = "\0";
+		tab[0] = 0;
+	}
+	return (num_str);
+}
+
 int		ft_d(t_printf **p)
 {
 	intmax_t	num;
-	int			len;
-	int			len_str;
 	char		*str;
-	int			i;
-	int			znak;
+	char		*num_str;
+	int			tab[4];
 
-	i = 0;
-	znak = 0;
+	tab[2] = 0;
+	tab[3] = 0;
 	num = (*p)->int_val;
 	if (num < 0 || (*p)->plus || (*p)->space)
-		znak = 1;
-	len = len_nbr(num);
-	if (znak)
-		len++;
-	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width)) + znak;
-	str = ft_strnew(len_str + 1);
+		tab[3] = 1;
+	tab[0] = len_nbr(num);
+	if (tab[3])
+		tab[0]++;
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width)) + tab[3];
+	str = ft_strnew(tab[1] + 1);
 	if (!str)
 		return (1);
+	num_str = ft_num_str(p, num, tab);
 	if ((*p)->minus)
-	{
-		if (num < 0)
-		{
-			str[i++] = '-';
-			num *= -1;
-		}
-		else if ((*p)->plus && num > 0)
-			str[i++] = '+';
-		else if ((*p)->space && num >= 0)
-			str[i++] = ' ';
-		// if ((*p)->precision > -1 && (*p)->width && (*p)->precision + 1 < (*p)->width)
-		// 	i--;
-		i += for_precision(p, len - znak, &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-		if (znak)
-			i--;
-		i += len;
-		i += simvol_out(p, len, ' ', &str[i]);
-	}
+		d_minus(p, num, str, tab, num_str);
 	else if ((*p)->zero && (*p)->precision < 0)
-	{
-		if (num < 0)
-		{
-			str[i++] = '-';
-			num *= -1;
-		}
-		else if ((*p)->plus && num > 0)
-			str[i++] = '+';
-		else if ((*p)->space)
-			str[i++] = ' ';
-		i += for_precision(p, len - znak, &str[i]);
-		i += simvol_out(p, len, '0', &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-	}
+		d_zero(p, num, str, tab, num_str);
 	else
-	{
-		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - len + znak, ' ', &str[i]);
-		else
-			i += simvol_out(p, len, ' ', &str[i]);
-		if (num < 0)
-		{
-			str[i++] = '-';
-			num *= -1;
-		}
-		else if ((*p)->plus && num > 0)
-			str[i++] = '+';
-		else if ((*p)->space && num >= 0)
-			str[i++] = ' ';
-		i += for_precision(p, len - znak, &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-	}
+		d_default(p, num, str, tab, num_str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
+//	free(num_str);
 	return (0);
 }
 
-// integer '10' signed
 int		ft_i(t_printf **p)
 {
 	return (ft_d(p));

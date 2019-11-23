@@ -6,13 +6,17 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:51:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 16:41:02 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 15:18:30 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-// transform int from '10' to 'X' system
+int		max_val(int a, int b)
+{
+	return (a > b ? a : b);
+}
+
 int		transform(uintmax_t num, unsigned int system, char dec, char *str)
 {
 	char	c;
@@ -39,7 +43,6 @@ int		transform(uintmax_t num, unsigned int system, char dec, char *str)
 	}
 }
 
-// length of number to define width
 int		len_nbr(intmax_t num)
 {
 	int	len;

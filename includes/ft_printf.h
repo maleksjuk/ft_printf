@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/19 19:04:45 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 16:27:05 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "../libft/includes/libft.h"
 
 # include <stdio.h>
+
+# define MAX_INT -922337203685477580
 
 typedef struct			s_printf
 {
@@ -35,6 +37,7 @@ typedef struct			s_printf
 	int 				hash;
 	int 				width;
 	int 				precision;
+	int 				uppercase;
 	long double 		double_val;
 	intmax_t			int_val;
 	uintmax_t			uint_val;
@@ -66,6 +69,7 @@ int 	ft_choose_type(t_printf **p);
 void	ft_choose_value(t_printf **p);
 
 // format.c
+int		max_val(int a, int b);
 int		transform(uintmax_t num, unsigned int system, char dec, char *str);
 int		len_nbr(intmax_t num);
 int		simvol_out(t_printf **p, int len, char c, char *str);
@@ -77,7 +81,7 @@ int		ft_i(t_printf **p);
 int		ft_u(t_printf **p);
 int		ft_o(t_printf **p);
 int		ft_x(t_printf **p);
-int		ft_X(t_printf **p);
+int		ft_x2(t_printf **p);
 
 // chars.c
 int		ft_c(t_printf **p);
@@ -86,5 +90,8 @@ int		ft_p(t_printf **p);
 
 // floats.c
 int 	ft_f(t_printf **p);
+
+//color.c
+int		ft_set_color(char **format, int i);
 
 #endif

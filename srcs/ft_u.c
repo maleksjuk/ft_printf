@@ -6,51 +6,85 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 14:31:07 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 18:29:01 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-// integer '10' unsigned; FLAGS 0-
+void	u_minus(t_printf **p, char *str, int tab[3], char *num_str)
+{
+	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+	tab[2] += tab[0];
+	tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+	str[tab[2]] = '\0';
+}
+
+void	u_zero(t_printf **p, char *str, int tab[3], char *num_str)
+{
+	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
+	tab[2] += simvol_out(p, tab[0], '0', &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+}
+
+void	u_default(t_printf **p, char *str, int tab[3], char *num_str)
+{
+	if ((*p)->precision > 0 && (*p)->precision > tab[0])
+		tab[2] += simvol_out(p, (*p)->precision, ' ', &str[tab[2]]);
+	else
+		tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], num_str);
+}
+
+char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
+{
+	char	*num_str;
+
+	if (num / 10 == MAX_INT && num % 10 == -8)
+	{
+		num_str = ft_strnew(22);
+		ft_strcpy(num_str, "-9223372036854775808\0");
+	}
+	else
+		num_str = ft_itoa(num);
+	if (num_str[0] == '-')
+	{
+	//	num_str[0] = '\0';
+		num_str = &num_str[1];
+	}
+	if (num == 0 && (*p)->precision == 0)
+	{
+		num_str = "\0";
+		tab[0] = 0;
+	}
+	return (num_str);
+}
+
 int		ft_u(t_printf **p)
 {
 	uintmax_t	num;
-	int			len;
-	int			len_str;
 	char		*str;
-	int			i;
+	char		*num_str;
+	int			tab[3];
 
-	i = 0;
+	tab[2] = 0;
 	num = (*p)->uint_val;
-	len = len_nbr(num);
-	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width));
-	str = ft_strnew(len_str + 1);
+	tab[0] = len_nbr(num);
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
+	str = ft_strnew(tab[1] + 1);
 	if (!str)
 		return (1);
+	num_str = ft_u_num_str(p, num, tab);
 	if ((*p)->minus)
-	{
-		i += for_precision(p, len, &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-		i += len;
-		i += simvol_out(p, len, ' ', &str[i]);
-	}
+		u_minus(p, str, tab, num_str);
 	else if ((*p)->zero && (*p)->precision < 0)
-	{
-		i += for_precision(p, len, &str[i]);
-		i += simvol_out(p, len, '0', &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-	}
+		u_zero(p, str, tab, num_str);
 	else
-	{
-		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - len, ' ', &str[i]);
-		else
-			i += simvol_out(p, len, ' ', &str[i]);
-		i += for_precision(p, len, &str[i]);
-		ft_strcpy(&str[i], ft_itoa(num));
-	}
+		u_default(p, str, tab, num_str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
+	free(num_str);
 	return (0);
 }

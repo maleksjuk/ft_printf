@@ -6,88 +6,109 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:29:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 17:53:21 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 16:11:13 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void	x_minus(t_printf **p, char *str, int tab[4], char *trans)
+{
+	if ((*p)->hash)
+	{
+		str[tab[2]++] = '0';
+		str[tab[2]++] = (char)tab[3];
+	}
+	tab[2] += for_precision(p, tab[0] - (*p)->hash * 2, &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], trans);
+	if ((*p)->hash)
+		tab[2] += tab[0] - 2;
+	else
+		tab[2] += tab[0];
+	tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+	str[tab[2]] = '\0';
+}
+
+void	x_zero(t_printf **p, char *str, int tab[4], char *trans)
+{
+	if ((*p)->hash)
+	{
+		str[tab[2]++] = '0';
+		str[tab[2]++] = (char)tab[3];
+	}
+	tab[2] += simvol_out(p, tab[0], '0', &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], trans);
+}
+
+void	x_default(t_printf **p, char *str, int tab[4], char *trans)
+{
+	int	help;
+
+	help = (*p)->precision + 2; //help = tab[0] + (*p)->precision - 1;
+	if ((*p)->precision > tab[0])//if ((*p)->precision > 0)
+		tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
+	else
+		tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
+	if ((*p)->hash)
+	{
+		str[tab[2]++] = '0';
+		str[tab[2]++] = (char)tab[3];
+		tab[0] -= 2;
+	}
+	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
+	ft_strcpy(&str[tab[2]], trans);
+}
 
 int		ft_x_universe(t_printf **p, char c, char x)
 {
 	uintmax_t	num;
 	char		*str;
 	char		*trans;
-	int			len;
-	int			len_str;
-	int			i;
+	int			tab[4];
 
-	i = 0;
+	tab[3] = (int)x;
+	tab[2] = 0;
 	num = (*p)->uint_val;
+	if (num == 0)
+		(*p)->hash = 0;
 	trans = ft_strnew(len_nbr(num) * 2);
 	if (!trans)
 		return (1);
-	len = transform(num, 16, c, trans) + 1;
-	len_str = ft_max(len, ft_max((*p)->precision, (*p)->width));
-	str = ft_strnew(len_str + 1);
+	tab[0] = transform(num, 16, c, trans) + 1;
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
+	str = ft_strnew(tab[1] + (*p)->hash * 2 + 4);
 	if (!str)
 		return (1);
 	if ((*p)->hash)
-		len += 2;
+		tab[0] += 2;
+	if (num == 0 && (*p)->precision == 0)
+	{
+		trans[0] = '\0';
+		tab[0] = 0;
+	}
 	if ((*p)->minus)
-	{
-		if ((*p)->hash)
-		{
-			str[i++] = '0';
-			str[i++] = x;
-		}
-		i += for_precision(p, len - (*p)->hash * 2, &str[i]);
-		ft_strcpy(&str[i], trans);
-		if ((*p)->hash)
-			i += len - 2;
-		else
-			i += len;
-		i += simvol_out(p, len, ' ', &str[i]);
-	}
+		x_minus(p, str, tab, trans);
 	else if ((*p)->zero && (*p)->precision < 0)
-	{
-		if ((*p)->hash)
-		{
-			str[i++] = '0';
-			str[i++] = x;
-		}
-	//	i += for_precision(p, len, &str[i]);
-		i += simvol_out(p, len, '0', &str[i]);
-		ft_strcpy(&str[i], trans);
-	}
+		x_zero(p, str, tab, trans);
+	else
+		x_default(p, str, tab, trans);
+	if ((*p)->final_str[0] == '\0')
+		(*p)->final_str = str;
 	else
 	{
-		if ((*p)->precision > 0)
-			i += simvol_out(p, len + (*p)->precision - 1, ' ', &str[i]);
-		else
-			i += simvol_out(p, len, ' ', &str[i]);
-		if ((*p)->hash)
-		{
-			str[i++] = '0';
-			str[i++] = x;
-			len -= 2;
-		}
-		i += for_precision(p, len, &str[i]);
-		ft_strcpy(&str[i], trans);
+		(*p)->final_str = ft_strjoin((*p)->final_str, str);
+		free(str);
 	}
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
 	free(trans);
 	return (0);
 }
 
-// integer '16' undigned 0123456789abcdef
 int		ft_x(t_printf **p)
 {
-	return (ft_x_universe(p, 'a', 'x'));	
+	return (ft_x_universe(p, 'a', 'x'));
 }
 
-// integer '16' unsigned 0123456789ABCDEF
-int		ft_X(t_printf **p)
+int		ft_x2(t_printf **p)
 {
 	return (ft_x_universe(p, 'A', 'X'));
 }

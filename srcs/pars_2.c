@@ -6,21 +6,26 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 18:51:52 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 14:20:09 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int 	ft_search_type(t_printf **p, int i)
+int	ft_search_type(t_printf **p, int i)
 {
 	if ((*p)->format[i] != '\0' &&
 		ft_strchr((*p)->spec_mask, (*p)->format[i]))
 		(*p)->type = (*p)->format[i];
+	else if (ft_strchr("DIOUCSF", (*p)->format[i]))
+	{
+		(*p)->type = (*p)->format[i] + 32;
+		(*p)->uppercase = 1;
+	}
 	return (++i);
 }
 
-int 	ft_search_spec_2(t_printf **p, int i)
+int	ft_search_spec_2(t_printf **p, int i)
 {
 	char *tmp1;
 	char *tmp2;
@@ -48,7 +53,7 @@ int 	ft_search_spec_2(t_printf **p, int i)
 	return (0);
 }
 
-int 	ft_search_spec_1(t_printf **p, int i)
+int	ft_search_spec_1(t_printf **p, int i)
 {
 	if ((*p)->final_str)
 	{
@@ -65,20 +70,24 @@ int 	ft_search_spec_1(t_printf **p, int i)
 	if ((*p)->format[i] == '\0')
 		return (-1);
 	i++;
-	if ((*p)->format[i] == '%')
+	i = ft_set_color(&((*p)->format), i);
+	if ((*p)->format[i] == '%' || i == 0)
 	{
 		(*p)->index = i;
-		i = ft_search_spec_1(p, -1);
+		if (i == 0)
+			i = ft_search_spec_1(p, 0);
+		else
+			i = ft_search_spec_1(p, -1);
 	}
 	return (i);
 }
 
-int 	ft_choose_type(t_printf **p)
+int	ft_choose_type(t_printf **p)
 {
 	int i;
 
 	i = -1;
-	int (*ft_type[10])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_X, ft_c, ft_s, ft_f, ft_p};
+	int (*ft_type[10])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_x2, ft_c, ft_s, ft_f, ft_p};
 	if ((*p)->type == 0)
 	{
 		ft_type[6](p);

@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/21 17:31:41 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/23 14:17:45 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_choose_value(t_printf **p)
 		(*p)->str_val = (char *)(va_arg((*p)->ap, char *));
 	else if ((*p)->type == 'f' && ((*p)->size == 'L' || (*p)->size == 'l'))
 		(*p)->double_val = (long double)(va_arg((*p)->ap, long double));
-	else if ((*p)->type == 'f')
+	else if ((*p)->type == 'f' || (*p)->type == 'F')
 		(*p)->double_val = (double)(va_arg((*p)->ap, double));
 	else if ((*p)->type == 0)
-		(*p)->int_val = (intmax_t)('%');
+		(*p)->int_val = (intmax_t)((*p)->format[(*p)->index - 1]);
 	else
 		ft_int_value(p);
 }
