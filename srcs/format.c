@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:51:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 15:18:30 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 18:50:51 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ int		len_nbr(intmax_t num)
 	len = 1;
 	if (num < 0)
 		num *= -1;
+	while (num > 9)
+	{
+		num = num / 10;
+		len++;
+	}
+	return (len);
+}
+
+int		len_nbr_u(uintmax_t num)
+{
+	int	len;
+
+	len = 1;
 	while (num > 9)
 	{
 		num = num / 10;

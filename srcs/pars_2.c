@@ -6,13 +6,13 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 14:20:09 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:13:29 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_search_type(t_printf **p, int i)
+int		ft_search_type(t_printf **p, int i)
 {
 	if ((*p)->format[i] != '\0' &&
 		ft_strchr((*p)->spec_mask, (*p)->format[i]))
@@ -25,7 +25,7 @@ int	ft_search_type(t_printf **p, int i)
 	return (++i);
 }
 
-int	ft_search_spec_2(t_printf **p, int i)
+int		ft_search_spec_2(t_printf **p, int i)
 {
 	char *tmp1;
 	char *tmp2;
@@ -34,7 +34,8 @@ int	ft_search_spec_2(t_printf **p, int i)
 	tmp2 = NULL;
 	if (!(*p)->final_str)
 	{
-		if (!((*p)->final_str = (char *)malloc(sizeof((*p)->final_str) * (i + 1))))
+		if (!((*p)->final_str = (char *)malloc(sizeof((*p)->final_str) *
+			(i + 1))))
 			return (-1);
 		(*p)->final_str[i] = '\0';
 		(*p)->final_str = ft_strncpy((*p)->final_str, (*p)->format, i);
@@ -53,7 +54,7 @@ int	ft_search_spec_2(t_printf **p, int i)
 	return (0);
 }
 
-int	ft_search_spec_1(t_printf **p, int i)
+int		ft_search_spec_1(t_printf **p, int i)
 {
 	if ((*p)->final_str)
 	{
@@ -82,12 +83,27 @@ int	ft_search_spec_1(t_printf **p, int i)
 	return (i);
 }
 
-int	ft_choose_type(t_printf **p)
+void	init_type(int (*ft_type[10])(t_printf**))
+{
+	ft_type[0] = ft_d;
+	ft_type[1] = ft_i;
+	ft_type[2] = ft_o;
+	ft_type[3] = ft_u;
+	ft_type[4] = ft_x;
+	ft_type[5] = ft_x2;
+	ft_type[6] = ft_c;
+	ft_type[7] = ft_s;
+	ft_type[8] = ft_f;
+	ft_type[9] = ft_p;
+}
+
+int		ft_choose_type(t_printf **p)
 {
 	int i;
+	int	(*ft_type[10])(t_printf**);
 
 	i = -1;
-	int (*ft_type[10])(t_printf**) = {ft_d, ft_i, ft_o, ft_u, ft_x, ft_x2, ft_c, ft_s, ft_f, ft_p};
+	init_type(ft_type);
 	if ((*p)->type == 0)
 	{
 		ft_type[6](p);
@@ -95,7 +111,7 @@ int	ft_choose_type(t_printf **p)
 	}
 	while ((*p)->spec_mask[++i])
 		if ((*p)->spec_mask[i] == (*p)->type)
-			break;
+			break ;
 	if (i < 10)
 		ft_type[i](p);
 	return (0);

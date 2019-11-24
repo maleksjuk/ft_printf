@@ -6,27 +6,32 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:39:52 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 19:03:16 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:32:48 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	num_null(t_printf **p)
+static char	*num_null(t_printf **p)
 {
-	if ((*p)->final_str[0] == '\0')
+	char	*num;
+
+	num = ft_strnew(7);
+	ft_strcpy(num, "(null)\0");
+	/*if ((*p)->final_str[0] == '\0')
 	{
 		(*p)->final_str = ft_strnew(2);
 		ft_strcpy((*p)->final_str, "(null)");
 	}
 	else
-		(*p)->final_str = ft_strjoin((*p)->final_str, "(null)");
-	return (1);
+		(*p)->final_str = ft_strjoin((*p)->final_str, "(null)");*/
+	return (num);
 }
 
 void		s_minus(t_printf **p, char *num, char *str, int tab[2])
 {
-	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width || (*p)->width == 0))
+	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width ||
+		(*p)->width == 0))
 	{
 		tab[0] = 0;
 		while ((*p)->precision - tab[1] > 0)
@@ -43,7 +48,8 @@ void		s_minus(t_printf **p, char *num, char *str, int tab[2])
 
 void		s_zero(t_printf **p, char *num, char *str, int tab[2])
 {
-	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width || (*p)->width == 0))
+	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width ||
+		(*p)->width == 0))
 	{
 		while ((*p)->width - (*p)->precision > tab[1])
 			str[tab[1]++] = '0';
@@ -65,7 +71,8 @@ void		s_zero(t_printf **p, char *num, char *str, int tab[2])
 
 void		s_default(t_printf **p, char *num, char *str, int tab[2])
 {
-	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width || (*p)->width == 0))
+	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width ||
+		(*p)->width == 0))
 	{
 		while ((*p)->width - (*p)->precision > tab[1])
 			str[tab[1]++] = ' ';
@@ -73,14 +80,6 @@ void		s_default(t_printf **p, char *num, char *str, int tab[2])
 		while ((*p)->precision - tab[0] > 0)
 			str[tab[1]++] = num[tab[0]++];
 	}
-/*	else if ((*p)->precision > -1 && (*p)->width == 0)
-	{
-		while ((*p)->width - (*p)->precision > tab[1])
-			str[tab[1]++] = ' ';
-		tab[0] = 0;
-		while ((*p)->precision - tab[0] > 0)
-			str[tab[1]++] = num[tab[0]++];
-	}*/
 	else
 	{
 		tab[1] += simvol_out(p, tab[0], ' ', str);
@@ -99,6 +98,19 @@ void		s_return(t_printf **p, char *str)
 	}
 }
 
+void		check_str(t_printf **p)
+{
+	int	i;
+
+	i = 0;
+	while (((*p)->str_val)[i])
+	{
+		if (((*p)->str_val)[i] > 127 || ((*p)->str_val)[i] < 0)
+			((*p)->str_val)[i] = '\0';
+		i++;
+	}
+}
+
 int			ft_s(t_printf **p)
 {
 	char	*num;
@@ -107,7 +119,9 @@ int			ft_s(t_printf **p)
 
 	num = (*p)->str_val;
 	if (!num)
-		return (num_null(p));
+		num = num_null(p);
+	//else
+	//	check_str(p);
 	tab[0] = ft_strlen(num);
 	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
 	str = ft_strnew(tab[1] + 1);

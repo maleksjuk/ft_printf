@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:09:55 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/22 19:40:56 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 18:20:59 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int			ft_c(t_printf **p)
 	char	*str;
 	int		i;
 
-	c = (char)(*p)->int_val;
-	i = ft_max((*p)->precision, (*p)->width);
+	if ((*p)->int_val <= 0 || (*p)->int_val > 127)
+		c = ' ';
+	else
+		c = (char)(*p)->int_val;
+	i = max_val((*p)->precision, (*p)->width);
 	str = ft_strnew(i + 1);
 	if (!str)
 		return (1);

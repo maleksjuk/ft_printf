@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:57:39 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 16:05:11 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 14:49:56 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void	p_default(t_printf **p, char *str, int tab[3], char *trans)
 	ft_strcpy(&str[tab[2]], trans);
 }
 
+void	p_final(t_printf **p, char *str, char *trans)
+{
+	(*p)->final_str = ft_strjoin((*p)->final_str, str);
+	free(str);
+	free(trans);
+}
+
 int		ft_p(t_printf **p)
 {
 	uintmax_t	num;
@@ -70,8 +77,6 @@ int		ft_p(t_printf **p)
 		p_zero(p, str, tab, trans);
 	else
 		p_default(p, str, tab, trans);
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
-	free(trans);
+	p_final(p, str, trans);
 	return (0);
 }

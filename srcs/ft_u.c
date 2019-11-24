@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 18:29:01 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 18:56:27 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,23 @@ void	u_default(t_printf **p, char *str, int tab[3], char *num_str)
 char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
 {
 	char	*num_str;
-
+	char	*part;
+	
 	if (num / 10 == MAX_INT && num % 10 == -8)
 	{
 		num_str = ft_strnew(22);
 		ft_strcpy(num_str, "-9223372036854775808\0");
 	}
+	else if (num > 10000000000)
+	{
+		part = ft_itoa(num / 10000);
+		num_str = ft_strjoin(part, ft_itoa(num % 10000));
+	}
 	else
 		num_str = ft_itoa(num);
 	if (num_str[0] == '-')
 	{
-	//	num_str[0] = '\0';
+		num_str[0] = '\0';
 		num_str = &num_str[1];
 	}
 	if (num == 0 && (*p)->precision == 0)
@@ -71,7 +77,7 @@ int		ft_u(t_printf **p)
 
 	tab[2] = 0;
 	num = (*p)->uint_val;
-	tab[0] = len_nbr(num);
+	tab[0] = len_nbr_u(num);
 	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
 	str = ft_strnew(tab[1] + 1);
 	if (!str)
@@ -85,6 +91,8 @@ int		ft_u(t_printf **p)
 		u_default(p, str, tab, num_str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
+	if (num < 0)
+		num_str--;
 	free(num_str);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:31:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 15:21:34 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 18:37:42 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int		ft_o(t_printf **p)
 
 	tab[2] = 0;
 	num = (*p)->uint_val;
-	trans = ft_strnew(len_nbr(num) * 2);
+	trans = ft_strnew(len_nbr(num) * 3);
 	if (!trans)
 		return (1);
 	tab[0] = transform(num, 8, '0', trans) + 1;
 	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
-	str = ft_strnew(tab[1] + 1);
+	str = ft_strnew(tab[1] + 10);
 	if (!str)
 		return (1);
 	if ((*p)->precision > tab[0])
@@ -86,6 +86,6 @@ int		ft_o(t_printf **p)
 		o_default(p, str, tab, trans);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
-	free(trans);
+	//free(trans);
 	return (0);
 }

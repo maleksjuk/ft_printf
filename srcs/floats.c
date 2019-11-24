@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:59 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 14:07:20 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:03:03 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,26 @@ void	ft_left_part(double *num, char **str, int *i, t_printf **p)
 	}
 }
 
-int 	ft_infinity(t_printf **p, double num)
+int		ft_infinity(t_printf **p, double num)
 {
 	if (num == 1 / -0.0)
 		(*p)->final_str = ((*p)->uppercase == 1) ?
-		ft_strjoin((*p)->final_str, "-Inf") : ft_strjoin((*p)->final_str, "-inf");
+		ft_strjoin((*p)->final_str, "-Inf") :
+			ft_strjoin((*p)->final_str, "-inf");
 	else if (num == 1 / 0.0)
 		(*p)->final_str = ((*p)->uppercase == 1) ?
-		ft_strjoin((*p)->final_str, "Inf") : ft_strjoin((*p)->final_str, "inf");
+		ft_strjoin((*p)->final_str, "Inf") :
+			ft_strjoin((*p)->final_str, "inf");
 	else if (num != num)
 		(*p)->final_str = ((*p)->uppercase == 1) ?
-		ft_strjoin((*p)->final_str, "Nan") : ft_strjoin((*p)->final_str, "nan");
+		ft_strjoin((*p)->final_str, "Nan") :
+			ft_strjoin((*p)->final_str, "nan");
 	else
 		return (0);
 	return (1);
 }
 
-int 	ft_f(t_printf **p)
+int		ft_f(t_printf **p)
 {
 	int		len;
 	int		i;
@@ -154,7 +157,7 @@ int 	ft_f(t_printf **p)
 		return (1);
 	if ((*p)->plus && num > 0)
 		str[i++] = '+';
-	if (num < 0 || 1/(-0.0) == 1/num)
+	if (num < 0 || 1 / (-0.0) == 1 / num)
 	{
 		str[i++] = '-';
 		num = num * (-1);

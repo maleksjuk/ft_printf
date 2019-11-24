@@ -6,13 +6,14 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/23 19:20:48 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:02:08 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	d_minus(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
+void	d_minus(t_printf **p, intmax_t num, char *str, int tab[4],
+				char *num_str)
 {
 	if (num < 0)
 	{
@@ -47,7 +48,7 @@ void	d_zero(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 	ft_strcpy(&str[tab[2]], num_str);
 }
 
-void	d_default(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
+void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 {
 	int	help;
 
@@ -65,7 +66,10 @@ void	d_default(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 		str[tab[2]++] = '+';
 	else if ((*p)->space && num >= 0)
 		str[tab[2]++] = ' ';
-	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
+	if (num == 0)
+		tab[2] += for_precision(p, tab[0] - tab[3] + 1, &str[tab[2]]);
+	else
+		tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
 	ft_strcpy(&str[tab[2]], num_str);
 }
 
@@ -84,8 +88,8 @@ char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
 		num_str = ft_itoa(num);
 	if (num_str[0] == '-')
 	{
-	//	num_str[0] = '\0';
-	//	num_str = &num_str[1];
+		num_str[0] = '\0';
+		num_str = &num_str[1];
 	}
 	if (num == 0 && (*p)->precision == 0)
 	{
@@ -120,9 +124,11 @@ int		ft_d(t_printf **p)
 	else if ((*p)->zero && (*p)->precision < 0)
 		d_zero(p, num, str, tab, num_str);
 	else
-		d_default(p, num, str, tab, num_str);
+		d_def(p, num, str, tab, num_str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
+	if (num < 0)
+		num_str--;
 //	free(num_str);
 	return (0);
 }
