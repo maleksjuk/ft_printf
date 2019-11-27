@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 14:51:06 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:06:12 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 {
 	int	help;
 
-	help = tab[0] + (*p)->precision - tab[0] + tab[3] * 2;// + 1;
-	if ((*p)->precision > 0)
+	help = tab[0] + (*p)->precision - tab[0] + tab[3] * 2 + 1;// + 1;
+	if ((*p)->precision > 0 && tab[0] < (*p)->precision)
 		tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
 	else
 		tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
@@ -96,7 +96,7 @@ char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
 	if (num == 0 && (*p)->precision == 0)
 	{
 		num_str = "\0";
-		tab[0] = 0;
+		tab[0]--;// = 0;
 	}
 	return (num_str);
 }
