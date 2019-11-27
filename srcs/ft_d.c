@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 19:02:08 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 14:51:06 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 {
 	int	help;
 
-	help = tab[0] + (*p)->precision - tab[0] + tab[3];
+	help = tab[0] + (*p)->precision - tab[0] + tab[3] * 2;// + 1;
 	if ((*p)->precision > 0)
 		tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
 	else
@@ -66,10 +66,12 @@ void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 		str[tab[2]++] = '+';
 	else if ((*p)->space && num >= 0)
 		str[tab[2]++] = ' ';
-	if (num == 0)
+	if (num == 0 && (*p)->precision == 0)
 		tab[2] += for_precision(p, tab[0] - tab[3] + 1, &str[tab[2]]);
+	//else if (tab[3])
+	//	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
 	else
-		tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
+		tab[2] += for_precision(p, tab[0] - tab[3] - 1, &str[tab[2]]);
 	ft_strcpy(&str[tab[2]], num_str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:29:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 15:04:28 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 15:46:40 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	x_default(t_printf **p, char *str, int tab[4], char *trans)
 {
 	int	help;
 
-	help = (*p)->precision + 2;
+	help = (*p)->precision + (*p)->hash * 2;
 	if ((*p)->precision > tab[0])
 		tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
 	else

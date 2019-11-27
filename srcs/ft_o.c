@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:31:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 18:37:42 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 15:09:45 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int		ft_o(t_printf **p)
 	str = ft_strnew(tab[1] + 10);
 	if (!str)
 		return (1);
-	if ((*p)->precision > tab[0])
+	if (((*p)->precision > tab[0] && num != 0) || (num == 0 && (*p)->precision > 0))
 		(*p)->hash = 0;
-	if (num == 0 && (*p)->precision == 0)
+	if (num == 0 && ((*p)->precision == 0 || (*p)->hash))
 	{
 		trans[0] = '\0';
 		tab[0] = 0;
@@ -84,8 +84,15 @@ int		ft_o(t_printf **p)
 		o_zero(p, str, tab, trans);
 	else
 		o_default(p, str, tab, trans);
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
+	//(*p)->final_str = ft_strjoin((*p)->final_str, str);
+	if ((*p)->final_str[0] == '\0')
+		(*p)->final_str = str;
+	else
+	{
+		(*p)->final_str = ft_strjoin((*p)->final_str, str);
+		free(str);
+	}
+	//free(str);
 	//free(trans);
 	return (0);
 }

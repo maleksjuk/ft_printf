@@ -1,7 +1,281 @@
 #include <stdio.h>
+#include <limits.h>
 
 int	main()
 {
+
+// PFT TEST
+
+//	ft_d and ft_i
+
+		printf("-->|");
+	printf("%8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%08.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%08.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%0+8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%0+8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% +8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% +8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 08.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 08.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 0+8.3d", 8375);
+		printf("|<--\n");
+		printf("-->|");
+	printf("% 0+8.3d", -8473);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+.0d", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+.d", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+5.0d", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%+5.d", 0);
+		printf("|<--\n");
+
+printf("\n");
+//	ft_u
+
+		printf("-->|");
+	printf("%.0u", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.u", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%5.0u", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%5.u", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-5.0u", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-5.u", 0);
+		printf("|<--\n");
+
+
+
+
+// printf("\n");
+//	ft_o
+
+	// 	printf("-->|");
+	// printf("this %#o number", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#3o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#-3o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#5.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#5.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#-5.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#-5.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%5.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%5.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%-5.0o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%-5.o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#.3o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#8.5o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#-8.5o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#08.5o", 0);
+	// 	printf("|<--\n");
+	// 	printf("-->|");
+	// printf("%#0-8.5o", 0);
+	// 	printf("|<--\n");
+
+
+printf("\n");
+//	ft_X
+
+/*		printf("-->|");
+	printf("%8.5X", 34);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%8.5X", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%08.5X", 34);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%08.5X", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%#8.5X", 0);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%#08.5X", 0);
+		printf("|<--\n");
+
+		printf("-->|");
+	printf("%#8.5x", 34);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%#08.5x", 34);
+		printf("|<--\n");
+*/
+
+//	ft_c WHAT?!
+
+printf("\n");	
+//	ft_s
+
+/*		printf("-->|");
+	printf("%7.5s", "yolo");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-7.5s", "yolo");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%3.3s%7.7s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%3.3s%3.7s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%7.7s%3.3s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%3.7s%3.3s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%3.3s%7.3s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%7.3s%3.3s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%3.3s%3.3s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-10.8s", "hi low");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-10.8s", NULL);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.7s", "hello");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.2s%.7s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.7s%.2s", "hello", "world");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.5s%7s", "yo", "boi");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.9s", "NULL");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.9s", "hi low");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.09s", "hi low");
+		printf("|<--\n");
+		printf("-->|");
+	printf("%.09s", NULL);
+		printf("|<--\n");
+		printf("-->|");
+	printf("%-.09s", "hi low");
+		printf("|<--\n");
+*/
+
+
+/*		printf("-->|");
+	printf("%s", L"text∆");				//s
+		printf("|<--\n");
+		printf("-->|");
+	printf("%S", L"text∆");				//S
+		printf("|<--\n");
+		printf("-->|");
+	printf("%s", "text∆");				//7
+		printf("|<--\n");
+		printf("-->|");
+	printf("%S", "text∆");				//7
+		printf("|<--\n");
+
+
+		printf("-->|");
+	printf("%03.2d", 0);
+		printf("|<--\n");
+
+
 	int		a, b, e;
 	char	c;
 	char	*str = "string";
@@ -11,172 +285,172 @@ int	main()
 	c = 'M';
 	e = 13;
 
-//	printf("This is test  0: |%#x|---|%5s|\n", 42, "%x");
-//	printf("This is test  2: |%#X|---|%5s|\n", 42, "%X");
+//	printf("This is printf  0: |%#x|---|%5s|\n", 42, "%x");
+//	printf("This is printf  2: |%#X|---|%5s|\n", 42, "%X");
 
 	printf("STANDART TYPE d (i):\nnumber > 0\n");
-	printf("This is test  0: |%3.*d|---|%5s|\n", e, a, "%3.*d");
-	printf("This is test  1: |%+3.*d|---|%5s|\n", e, a, "%+3.*d");
-	printf("This is test  2: |%-3.*d|---|%5s|\n", e, a, "%-3.*d");
-	printf("This is test  3: |% 3.*d|---|%5s|\n", e, a, "% 3.*d");
-	printf("This is test  4: |%03.*d|---|%5s|\n", e, a, "%03.*d");
-	printf("This is test  5: |% +3.*d|---|%5s|\n", e, a, "% +3.*d");
-	printf("This is test  6: |% -3.*d|---|%5s|\n", e, a, "% -3.*d");
-	printf("This is test  7: |%+-3.*d|---|%5s|\n", e, a, "%+-3.*d");
-	printf("This is test  8: |%0-3.*d|---|%5s|\n", e, a, "%0-3.*d");
-	printf("This is test  9: |%0+3.*d|---|%5s|\n", e, a, "%0+3.*d");
-	printf("This is test 10: |% 03.*d|---|%5s|\n", e, a, "% 03.*d");
-	printf("This is test 11: |% -3.*d|---|%5s|\n\n", e, a, "% -3.*d");
+	printf("This is printf  0: |%3.*d|---|%5s|\n", e, a, "%3.*d");
+	printf("This is printf  1: |%+3.*d|---|%5s|\n", e, a, "%+3.*d");
+	printf("This is printf  2: |%-3.*d|---|%5s|\n", e, a, "%-3.*d");
+	printf("This is printf  3: |% 3.*d|---|%5s|\n", e, a, "% 3.*d");
+	printf("This is printf  4: |%03.*d|---|%5s|\n", e, a, "%03.*d");
+	printf("This is printf  5: |% +3.*d|---|%5s|\n", e, a, "% +3.*d");
+	printf("This is printf  6: |% -3.*d|---|%5s|\n", e, a, "% -3.*d");
+	printf("This is printf  7: |%+-3.*d|---|%5s|\n", e, a, "%+-3.*d");
+	printf("This is printf  8: |%0-3.*d|---|%5s|\n", e, a, "%0-3.*d");
+	printf("This is printf  9: |%0+3.*d|---|%5s|\n", e, a, "%0+3.*d");
+	printf("This is printf 10: |% 03.*d|---|%5s|\n", e, a, "% 03.*d");
+	printf("This is printf 11: |% -3.*d|---|%5s|\n\n", e, a, "% -3.*d");
 
 	printf("number < 0\n");
-	printf("This is test  0: |%3.*d|---|%5s|\n", e, b, "%3.*d");
-	printf("This is test  1: |%+3.*d|---|%5s|\n", e, b, "%+3.*d");
-	printf("This is test  2: |%-3.*d|---|%5s|\n", e, b, "%-3.*d");
-	printf("This is test  3: |% 3.*d|---|%5s|\n", e, b, "% 3.*d");
-	printf("This is test  4: |%03.*d|---|%5s|\n", e, b, "%03.*d");
-	printf("This is test  5: |% +3.*d|---|%5s|\n", e, b, "% +3.*d");
-	printf("This is test  6: |% -3.*d|---|%5s|\n", e, b, "% -3.*d");
-	printf("This is test  7: |%+-3.*d|---|%5s|\n", e, b, "%+-3.*d");
-	printf("This is test  8: |%0-3.*d|---|%5s|\n", e, b, "%0-3.*d");
-	printf("This is test  9: |%0+3.*d|---|%5s|\n", e, b, "%0+3.*d");
-	printf("This is test 10: |% 03.*d|---|%5s|\n", e, b, "% 03.*d");
-	printf("This is test 11: |% -3.*d|---|%5s|\n\n", e, b, "% -3.*d");
+	printf("This is printf  0: |%3.*d|---|%5s|\n", e, b, "%3.*d");
+	printf("This is printf  1: |%+3.*d|---|%5s|\n", e, b, "%+3.*d");
+	printf("This is printf  2: |%-3.*d|---|%5s|\n", e, b, "%-3.*d");
+	printf("This is printf  3: |% 3.*d|---|%5s|\n", e, b, "% 3.*d");
+	printf("This is printf  4: |%03.*d|---|%5s|\n", e, b, "%03.*d");
+	printf("This is printf  5: |% +3.*d|---|%5s|\n", e, b, "% +3.*d");
+	printf("This is printf  6: |% -3.*d|---|%5s|\n", e, b, "% -3.*d");
+	printf("This is printf  7: |%+-3.*d|---|%5s|\n", e, b, "%+-3.*d");
+	printf("This is printf  8: |%0-3.*d|---|%5s|\n", e, b, "%0-3.*d");
+	printf("This is printf  9: |%0+3.*d|---|%5s|\n", e, b, "%0+3.*d");
+	printf("This is printf 10: |% 03.*d|---|%5s|\n", e, b, "% 03.*d");
+	printf("This is printf 11: |% -3.*d|---|%5s|\n\n", e, b, "% -3.*d");
 
 	printf("STANDART TYPE u:\nnumber > 0\n");
-	printf("This is test  0: |%3.*u|---|%5s|\n", e, a, "%3.*u");
-	printf("This is test  1: |%+3.*u|---|%5s|\n", e, a, "%+3.*u");
-	printf("This is test  2: |%-3.*u|---|%5s|\n", e, a, "%-3.*u");
-	printf("This is test  3: |% 3.*u|---|%5s|\n", e, a, "% 3.*u");
-	printf("This is test  4: |%03.*u|---|%5s|\n", e, a, "%03.*u");
-	printf("This is test  5: |% +3.*u|---|%5s|\n", e, a, "% +3.*u");
-	printf("This is test  6: |% -3.*u|---|%5s|\n", e, a, "% -3.*u");
-	printf("This is test  7: |%+-3.*u|---|%5s|\n", e, a, "%+-3.*u");
-	printf("This is test  8: |%0-3.*u|---|%5s|\n", e, a, "%0-3.*u");
-	printf("This is test  9: |%0+3.*u|---|%5s|\n", e, a, "%0+3.*u");
-	printf("This is test 10: |% 03.*u|---|%5s|\n", e, a, "% 03.*u");
-	printf("This is test 11: |% -3.*u|---|%5s|\n\n", e, a, "% -3.*u");
+	printf("This is printf  0: |%3.*u|---|%5s|\n", e, a, "%3.*u");
+	printf("This is printf  1: |%+3.*u|---|%5s|\n", e, a, "%+3.*u");
+	printf("This is printf  2: |%-3.*u|---|%5s|\n", e, a, "%-3.*u");
+	printf("This is printf  3: |% 3.*u|---|%5s|\n", e, a, "% 3.*u");
+	printf("This is printf  4: |%03.*u|---|%5s|\n", e, a, "%03.*u");
+	printf("This is printf  5: |% +3.*u|---|%5s|\n", e, a, "% +3.*u");
+	printf("This is printf  6: |% -3.*u|---|%5s|\n", e, a, "% -3.*u");
+	printf("This is printf  7: |%+-3.*u|---|%5s|\n", e, a, "%+-3.*u");
+	printf("This is printf  8: |%0-3.*u|---|%5s|\n", e, a, "%0-3.*u");
+	printf("This is printf  9: |%0+3.*u|---|%5s|\n", e, a, "%0+3.*u");
+	printf("This is printf 10: |% 03.*u|---|%5s|\n", e, a, "% 03.*u");
+	printf("This is printf 11: |% -3.*u|---|%5s|\n\n", e, a, "% -3.*u");
 
 	printf("number < 0\n");
-	printf("This is test  1: |%3.*u|---|%5s|\n", e, b, "%3.*u");
-	printf("This is test  1: |%+3.*u|---|%5s|\n", e, b, "%+3.*u");
-	printf("This is test  2: |%-3.*u|---|%5s|\n", e, b, "%-3.*u");
-	printf("This is test  3: |% 3.*u|---|%5s|\n", e, b, "% 3.*u");
-	printf("This is test  4: |%03.*u|---|%5s|\n", e, b, "%03.*u");
-	printf("This is test  5: |% +3.*u|---|%5s|\n", e, b, "% +3.*u");
-	printf("This is test  6: |% -3.*u|---|%5s|\n", e, b, "% -3.*u");
-	printf("This is test  7: |%+-3.*u|---|%5s|\n", e, b, "%+-3.*u");
-	printf("This is test  8: |%0-3.*u|---|%5s|\n", e, b, "%0-3.*u");
-	printf("This is test  9: |%0+3.*u|---|%5s|\n", e, b, "%0+3.*u");
-	printf("This is test 10: |% 03.*u|---|%5s|\n", e, b, "% 03.*u");
-	printf("This is test 11: |% -3.*u|---|%5s|\n\n", e, b, "% -3.*u");
+	printf("This is printf  1: |%3.*u|---|%5s|\n", e, b, "%3.*u");
+	printf("This is printf  1: |%+3.*u|---|%5s|\n", e, b, "%+3.*u");
+	printf("This is printf  2: |%-3.*u|---|%5s|\n", e, b, "%-3.*u");
+	printf("This is printf  3: |% 3.*u|---|%5s|\n", e, b, "% 3.*u");
+	printf("This is printf  4: |%03.*u|---|%5s|\n", e, b, "%03.*u");
+	printf("This is printf  5: |% +3.*u|---|%5s|\n", e, b, "% +3.*u");
+	printf("This is printf  6: |% -3.*u|---|%5s|\n", e, b, "% -3.*u");
+	printf("This is printf  7: |%+-3.*u|---|%5s|\n", e, b, "%+-3.*u");
+	printf("This is printf  8: |%0-3.*u|---|%5s|\n", e, b, "%0-3.*u");
+	printf("This is printf  9: |%0+3.*u|---|%5s|\n", e, b, "%0+3.*u");
+	printf("This is printf 10: |% 03.*u|---|%5s|\n", e, b, "% 03.*u");
+	printf("This is printf 11: |% -3.*u|---|%5s|\n\n", e, b, "% -3.*u");
 
 	printf("STANDART TYPE o:\nnumber > 0\n");
-	printf("This is test  0: |%3.*o|---|%5s|\n", e, a, "%3.*o");
-	printf("This is test  1: |%+3.*o|---|%5s|\n", e, a, "%+3.*o");
-	printf("This is test  2: |%-3.*o|---|%5s|\n", e, a, "%-3.*o");
-	printf("This is test  3: |% 3.*o|---|%5s|\n", e, a, "% 3.*o");
-	printf("This is test  4: |%#3.*o|---|%5s|\n", e, a, "%#3.*o");
-	printf("This is test  5: |%03.*o|---|%5s|\n", e, a, "%03.*o");
-	printf("This is test  6: |%#+3.*o|---|%5s|\n", e, a, "%#+3.*o");
-	printf("This is test  7: |%#-3.*o|---|%5s|\n", e, a, "%#-3.*o");
-	printf("This is test  8: |%#03.*o|---|%5s|\n", e, a, "%#03.*o");
-	printf("This is test  9: |% #3.*o|---|%5s|\n", e, a, "% #3.*o");
-	printf("This is test 10: |%+-3.*o|---|%5s|\n", e, a, "%+-3.*o");
-	printf("This is test 11: |%+03.*o|---|%5s|\n", e, a, "%+03.*o");
-	printf("This is test 12: |% +3.*o|---|%5s|\n", e, a, "% +3.*o");
-	printf("This is test 13: |%-03.*o|---|%5s|\n", e, a, "%-03.*o");
-	printf("This is test 14: |% -3.*o|---|%5s|\n", e, a, "% -3.*o");
-	printf("This is test 15: |% 03.*o|---|%5s|\n\n", e, a, "% 03.*o");
+	printf("This is printf  0: |%3.*o|---|%5s|\n", e, a, "%3.*o");
+	printf("This is printf  1: |%+3.*o|---|%5s|\n", e, a, "%+3.*o");
+	printf("This is printf  2: |%-3.*o|---|%5s|\n", e, a, "%-3.*o");
+	printf("This is printf  3: |% 3.*o|---|%5s|\n", e, a, "% 3.*o");
+	printf("This is printf  4: |%#3.*o|---|%5s|\n", e, a, "%#3.*o");
+	printf("This is printf  5: |%03.*o|---|%5s|\n", e, a, "%03.*o");
+	printf("This is printf  6: |%#+3.*o|---|%5s|\n", e, a, "%#+3.*o");
+	printf("This is printf  7: |%#-3.*o|---|%5s|\n", e, a, "%#-3.*o");
+	printf("This is printf  8: |%#03.*o|---|%5s|\n", e, a, "%#03.*o");
+	printf("This is printf  9: |% #3.*o|---|%5s|\n", e, a, "% #3.*o");
+	printf("This is printf 10: |%+-3.*o|---|%5s|\n", e, a, "%+-3.*o");
+	printf("This is printf 11: |%+03.*o|---|%5s|\n", e, a, "%+03.*o");
+	printf("This is printf 12: |% +3.*o|---|%5s|\n", e, a, "% +3.*o");
+	printf("This is printf 13: |%-03.*o|---|%5s|\n", e, a, "%-03.*o");
+	printf("This is printf 14: |% -3.*o|---|%5s|\n", e, a, "% -3.*o");
+	printf("This is printf 15: |% 03.*o|---|%5s|\n\n", e, a, "% 03.*o");
 
 	printf("number < 0\n");
-	printf("This is test  0: |%3.*o|---|%5s|\n", e, b, "%3.*o");
-	printf("This is test  1: |%+3.*o|---|%5s|\n", e, b, "%+3.*o");
-	printf("This is test  2: |%-3.*o|---|%5s|\n", e, b, "%-3.*o");
-	printf("This is test  3: |% 3.*o|---|%5s|\n", e, b, "% 3.*o");
-	printf("This is test  4: |%#3.*o|---|%5s|\n", e, b, "%#3.*o");
-	printf("This is test  5: |%03.*o|---|%5s|\n", e, b, "%03.*o");
-	printf("This is test  6: |%#+3.*o|---|%5s|\n", e, b, "%#+3.*o");
-	printf("This is test  7: |%#-3.*o|---|%5s|\n", e, b, "%#-3.*o");
-	printf("This is test  8: |%#03.*o|---|%5s|\n", e, b, "%#03.*o");
-	printf("This is test  9: |% #3.*o|---|%5s|\n", e, b, "% #3.*o");
-	printf("This is test 10: |%+-3.*o|---|%5s|\n", e, b, "%+-3.*o");
-	printf("This is test 11: |%+03.*o|---|%5s|\n", e, b, "%+03.*o");
-	printf("This is test 12: |% +3.*o|---|%5s|\n", e, b, "% +3.*o");
-	printf("This is test 13: |%-03.*o|---|%5s|\n", e, b, "%-03.*o");
-	printf("This is test 14: |% -3.*o|---|%5s|\n", e, b, "% -3.*o");
-	printf("This is test 15: |% 03.*o|---|%5s|\n\n", e, b, "% 03.*o");
+	printf("This is printf  0: |%3.*o|---|%5s|\n", e, b, "%3.*o");
+	printf("This is printf  1: |%+3.*o|---|%5s|\n", e, b, "%+3.*o");
+	printf("This is printf  2: |%-3.*o|---|%5s|\n", e, b, "%-3.*o");
+	printf("This is printf  3: |% 3.*o|---|%5s|\n", e, b, "% 3.*o");
+	printf("This is printf  4: |%#3.*o|---|%5s|\n", e, b, "%#3.*o");
+	printf("This is printf  5: |%03.*o|---|%5s|\n", e, b, "%03.*o");
+	printf("This is printf  6: |%#+3.*o|---|%5s|\n", e, b, "%#+3.*o");
+	printf("This is printf  7: |%#-3.*o|---|%5s|\n", e, b, "%#-3.*o");
+	printf("This is printf  8: |%#03.*o|---|%5s|\n", e, b, "%#03.*o");
+	printf("This is printf  9: |% #3.*o|---|%5s|\n", e, b, "% #3.*o");
+	printf("This is printf 10: |%+-3.*o|---|%5s|\n", e, b, "%+-3.*o");
+	printf("This is printf 11: |%+03.*o|---|%5s|\n", e, b, "%+03.*o");
+	printf("This is printf 12: |% +3.*o|---|%5s|\n", e, b, "% +3.*o");
+	printf("This is printf 13: |%-03.*o|---|%5s|\n", e, b, "%-03.*o");
+	printf("This is printf 14: |% -3.*o|---|%5s|\n", e, b, "% -3.*o");
+	printf("This is printf 15: |% 03.*o|---|%5s|\n\n", e, b, "% 03.*o");
 
 	printf("STANDART TYPE x (X):\nnumber > 0\n");
-	printf("This is test  0: |%5.*x|---|%5s|\n", e, a, "%5.*x");
-	printf("This is test  1: |%+5.*x|---|%5s|\n", e, a, "%+5.*x");
-	printf("This is test  2: |%-5.*x|---|%5s|\n", e, a, "%-5.*x");
-	printf("This is test  3: |% 5.*x|---|%5s|\n", e, a, "% 5.*x");
-	printf("This is test  4: |%#5.*x|---|%5s|\n", e, a, "%#5.*x");
-	printf("This is test  5: |%05.*x|---|%5s|\n", e, a, "%05.*x");
-	printf("This is test  6: |%#+5.*x|---|%5s|\n", e, a, "%#+5.*x");
-	printf("This is test  7: |%#-5.*x|---|%5s|\n", e, a, "%#-5.*x");
-	printf("This is test  8: |%#05.*x|---|%5s|\n", e, a, "%#05.*x");
-	printf("This is test  9: |% #5.*x|---|%5s|\n", e, a, "% #5.*x");
-	printf("This is test 10: |%+-5.*x|---|%5s|\n", e, a, "%+-5.*x");
-	printf("This is test 11: |%+05.*x|---|%5s|\n", e, a, "%+05.*x");
-	printf("This is test 12: |% +5.*x|---|%5s|\n", e, a, "% +5.*x");
-	printf("This is test 13: |%-05.*x|---|%5s|\n", e, a, "%-05.*x");
-	printf("This is test 14: |% -5.*x|---|%5s|\n", e, a, "% -5.*x");
-	printf("This is test 15: |% 05.*x|---|%5s|\n\n", e, a, "% 05.*x");
+	printf("This is printf  0: |%5.*x|---|%5s|\n", e, a, "%5.*x");
+	printf("This is printf  1: |%+5.*x|---|%5s|\n", e, a, "%+5.*x");
+	printf("This is printf  2: |%-5.*x|---|%5s|\n", e, a, "%-5.*x");
+	printf("This is printf  3: |% 5.*x|---|%5s|\n", e, a, "% 5.*x");
+	printf("This is printf  4: |%#5.*x|---|%5s|\n", e, a, "%#5.*x");
+	printf("This is printf  5: |%05.*x|---|%5s|\n", e, a, "%05.*x");
+	printf("This is printf  6: |%#+5.*x|---|%5s|\n", e, a, "%#+5.*x");
+	printf("This is printf  7: |%#-5.*x|---|%5s|\n", e, a, "%#-5.*x");
+	printf("This is printf  8: |%#05.*x|---|%5s|\n", e, a, "%#05.*x");
+	printf("This is printf  9: |% #5.*x|---|%5s|\n", e, a, "% #5.*x");
+	printf("This is printf 10: |%+-5.*x|---|%5s|\n", e, a, "%+-5.*x");
+	printf("This is printf 11: |%+05.*x|---|%5s|\n", e, a, "%+05.*x");
+	printf("This is printf 12: |% +5.*x|---|%5s|\n", e, a, "% +5.*x");
+	printf("This is printf 13: |%-05.*x|---|%5s|\n", e, a, "%-05.*x");
+	printf("This is printf 14: |% -5.*x|---|%5s|\n", e, a, "% -5.*x");
+	printf("This is printf 15: |% 05.*x|---|%5s|\n\n", e, a, "% 05.*x");
 
 	printf("number < 0\n");
-	printf("This is test  0: |%5.*x|---|%5s|\n", e, b, "%5.*x");
-	printf("This is test  1: |%+5.*x|---|%5s|\n", e, b, "%+5.*x");
-	printf("This is test  2: |%-5.*x|---|%5s|\n", e, b, "%-5.*x");
-	printf("This is test  3: |% 5.*x|---|%5s|\n", e, b, "% 5.*x");
-	printf("This is test  4: |%#5.*x|---|%5s|\n", e, b, "%#5.*x");
-	printf("This is test  5: |%05.*x|---|%5s|\n", e, b, "%05.*x");
-	printf("This is test  6: |%#+5.*x|---|%5s|\n", e, b, "%#+5.*x");
-	printf("This is test  7: |%#-5.*x|---|%5s|\n", e, b, "%#-5.*x");
-	printf("This is test  8: |%#05.*x|---|%5s|\n", e, b, "%#05.*x");
-	printf("This is test  9: |% #5.*x|---|%5s|\n", e, b, "% #5.*x");
-	printf("This is test 10: |%+-5.*x|---|%5s|\n", e, b, "%+-5.*x");
-	printf("This is test 11: |%+05.*x|---|%5s|\n", e, b, "%+05.*x");
-	printf("This is test 12: |% +5.*x|---|%5s|\n", e, b, "% +5.*x");
-	printf("This is test 13: |%-05.*x|---|%5s|\n", e, b, "%-05.*x");
-	printf("This is test 14: |% -5.*x|---|%5s|\n", e, b, "% -5.*x");
-	printf("This is test 15: |% 05.*x|---|%5s|\n\n", e, b, "% 05.*x");
+	printf("This is printf  0: |%5.*x|---|%5s|\n", e, b, "%5.*x");
+	printf("This is printf  1: |%+5.*x|---|%5s|\n", e, b, "%+5.*x");
+	printf("This is printf  2: |%-5.*x|---|%5s|\n", e, b, "%-5.*x");
+	printf("This is printf  3: |% 5.*x|---|%5s|\n", e, b, "% 5.*x");
+	printf("This is printf  4: |%#5.*x|---|%5s|\n", e, b, "%#5.*x");
+	printf("This is printf  5: |%05.*x|---|%5s|\n", e, b, "%05.*x");
+	printf("This is printf  6: |%#+5.*x|---|%5s|\n", e, b, "%#+5.*x");
+	printf("This is printf  7: |%#-5.*x|---|%5s|\n", e, b, "%#-5.*x");
+	printf("This is printf  8: |%#05.*x|---|%5s|\n", e, b, "%#05.*x");
+	printf("This is printf  9: |% #5.*x|---|%5s|\n", e, b, "% #5.*x");
+	printf("This is printf 10: |%+-5.*x|---|%5s|\n", e, b, "%+-5.*x");
+	printf("This is printf 11: |%+05.*x|---|%5s|\n", e, b, "%+05.*x");
+	printf("This is printf 12: |% +5.*x|---|%5s|\n", e, b, "% +5.*x");
+	printf("This is printf 13: |%-05.*x|---|%5s|\n", e, b, "%-05.*x");
+	printf("This is printf 14: |% -5.*x|---|%5s|\n", e, b, "% -5.*x");
+	printf("This is printf 15: |% 05.*x|---|%5s|\n\n", e, b, "% 05.*x");
 
 	printf("STANDART TYPE c:\n");
-	printf("This is test  0: |%5.*c|---|%5s|\n", e, c, "%5.*c");
-	printf("This is test  1: |%+5.*c|---|%5s|\n", e, c, "%+5.*c");
-	printf("This is test  2: |%-5.*c|---|%5s|\n", e, c, "%-5.*c");
-	printf("This is test  3: |% 5.*c|---|%5s|\n", e, c, "% 5.*c");
-	printf("This is test  4: |%#5.*c|---|%5s|\n", e, c, "%#5.*c");
-	printf("This is test  5: |%05.*c|---|%5s|\n", e, c, "%05.*c");
-	printf("This is test  6: |%#+5.*c|---|%5s|\n", e, c, "%#+5.*c");
-	printf("This is test  7: |%#-5.*c|---|%5s|\n", e, c, "%#-5.*c");
-	printf("This is test  8: |%#05.*c|---|%5s|\n", e, c, "%#05.*c");
-	printf("This is test  9: |% #5.*c|---|%5s|\n", e, c, "% #5.*c");
-	printf("This is test 10: |%+-5.*c|---|%5s|\n", e, c, "%+-5.*c");
-	printf("This is test 11: |%+05.*c|---|%5s|\n", e, c, "%+05.*c");
-	printf("This is test 12: |% +5.*c|---|%5s|\n", e, c, "% +5.*c");
-	printf("This is test 13: |%-05.*c|---|%5s|\n", e, c, "%-05.*c");
-	printf("This is test 14: |% -5.*c|---|%5s|\n", e, c, "% -5.*c");
-	printf("This is test 15: |% 05.*c|---|%5s|\n\n", e, c, "% 05.*c");
+	printf("This is printf  0: |%5.*c|---|%5s|\n", e, c, "%5.*c");
+	printf("This is printf  1: |%+5.*c|---|%5s|\n", e, c, "%+5.*c");
+	printf("This is printf  2: |%-5.*c|---|%5s|\n", e, c, "%-5.*c");
+	printf("This is printf  3: |% 5.*c|---|%5s|\n", e, c, "% 5.*c");
+	printf("This is printf  4: |%#5.*c|---|%5s|\n", e, c, "%#5.*c");
+	printf("This is printf  5: |%05.*c|---|%5s|\n", e, c, "%05.*c");
+	printf("This is printf  6: |%#+5.*c|---|%5s|\n", e, c, "%#+5.*c");
+	printf("This is printf  7: |%#-5.*c|---|%5s|\n", e, c, "%#-5.*c");
+	printf("This is printf  8: |%#05.*c|---|%5s|\n", e, c, "%#05.*c");
+	printf("This is printf  9: |% #5.*c|---|%5s|\n", e, c, "% #5.*c");
+	printf("This is printf 10: |%+-5.*c|---|%5s|\n", e, c, "%+-5.*c");
+	printf("This is printf 11: |%+05.*c|---|%5s|\n", e, c, "%+05.*c");
+	printf("This is printf 12: |% +5.*c|---|%5s|\n", e, c, "% +5.*c");
+	printf("This is printf 13: |%-05.*c|---|%5s|\n", e, c, "%-05.*c");
+	printf("This is printf 14: |% -5.*c|---|%5s|\n", e, c, "% -5.*c");
+	printf("This is printf 15: |% 05.*c|---|%5s|\n\n", e, c, "% 05.*c");
 
 	printf("STANDART TYPE s:\n");
-	printf("This is test  0: |%5.*s|---|%5s|\n", e, str, "%5.*s");
-	printf("This is test  1: |%+5.*s|---|%5s|\n", e, str, "%+5.*s");
-	printf("This is test  2: |%-5.*s|---|%5s|\n", e, str, "%-5.*s");
-	printf("This is test  3: |% 5.*s|---|%5s|\n", e, str, "% 5.*s");
-	printf("This is test  4: |%#5.*s|---|%5s|\n", e, str, "%#5.*s");
-	printf("This is test  5: |%05.*s|---|%5s|\n", e, str, "%05.*s");
-	printf("This is test  6: |%#+5.*s|---|%5s|\n", e, str, "%#+5.*s");
-	printf("This is test  7: |%#-5.*s|---|%5s|\n", e, str, "%#-5.*s");
-	printf("This is test  8: |%#05.*s|---|%5s|\n", e, str, "%#05.*s");
-	printf("This is test  9: |% #5.*s|---|%5s|\n", e, str, "% #5.*s");
-	printf("This is test 10: |%+-5.*s|---|%5s|\n", e, str, "%+-5.*s");
-	printf("This is test 11: |%+05.*s|---|%5s|\n", e, str, "%+05.*s");
-	printf("This is test 12: |% +5.*s|---|%5s|\n", e, str, "% +5.*s");
-	printf("This is test 13: |%-05.*s|---|%5s|\n", e, str, "%-05.*s");
-	printf("This is test 14: |% -5.*s|---|%5s|\n", e, str, "% -5.*s");
-	printf("This is test 15: |% 05.*s|---|%5s|\n", e, str, "% 05.*s");
+	printf("This is printf  0: |%5.*s|---|%5s|\n", e, str, "%5.*s");
+	printf("This is printf  1: |%+5.*s|---|%5s|\n", e, str, "%+5.*s");
+	printf("This is printf  2: |%-5.*s|---|%5s|\n", e, str, "%-5.*s");
+	printf("This is printf  3: |% 5.*s|---|%5s|\n", e, str, "% 5.*s");
+	printf("This is printf  4: |%#5.*s|---|%5s|\n", e, str, "%#5.*s");
+	printf("This is printf  5: |%05.*s|---|%5s|\n", e, str, "%05.*s");
+	printf("This is printf  6: |%#+5.*s|---|%5s|\n", e, str, "%#+5.*s");
+	printf("This is printf  7: |%#-5.*s|---|%5s|\n", e, str, "%#-5.*s");
+	printf("This is printf  8: |%#05.*s|---|%5s|\n", e, str, "%#05.*s");
+	printf("This is printf  9: |% #5.*s|---|%5s|\n", e, str, "% #5.*s");
+	printf("This is printf 10: |%+-5.*s|---|%5s|\n", e, str, "%+-5.*s");
+	printf("This is printf 11: |%+05.*s|---|%5s|\n", e, str, "%+05.*s");
+	printf("This is printf 12: |% +5.*s|---|%5s|\n", e, str, "% +5.*s");
+	printf("This is printf 13: |%-05.*s|---|%5s|\n", e, str, "%-05.*s");
+	printf("This is printf 14: |% -5.*s|---|%5s|\n", e, str, "% -5.*s");
+	printf("This is printf 15: |% 05.*s|---|%5s|\n", e, str, "% 05.*s");
 
 	int	w = 20;
 	int	p[2] = {10, 12};
@@ -185,60 +459,60 @@ int	main()
 	e = 25;
 
 	printf("STANDART TYPE p:\n");
-	printf("This is test  0: |%*.*p|---|%5s|\n", w, e, p, "%5.*p");
-	printf("This is test  1: |%+*.*p|---|%5s|\n", w, e, p, "%+5.*p");
-	printf("This is test  2: |%-*.*p|---|%5s|\n", w, e, p, "%-5.*p");
-	printf("This is test  3: |% *.*p|---|%5s|\n", w, e, p, "% 5.*p");
-	printf("This is test  4: |%#*.*p|---|%5s|\n", w, e, p, "%#5.*p");
-	printf("This is test  5: |%0*.*p|---|%5s|\n", w, e, p, "%05.*p");
-	printf("This is test  6: |%#+*.*p|---|%5s|\n", w, e, p, "%#+5.*p");
-	printf("This is test  7: |%#-*.*p|---|%5s|\n", w, e, p, "%#-5.*p");
-	printf("This is test  8: |%#0*.*p|---|%5s|\n", w, e, p, "%#05.*p");
-	printf("This is test  9: |% #*.*p|---|%5s|\n", w, e, p, "% #5.*p");
-	printf("This is test 10: |%+-*.*p|---|%5s|\n", w, e, p, "%+-5.*p");
-	printf("This is test 11: |%+0*.*p|---|%5s|\n", w, e, p, "%+05.*p");
-	printf("This is test 12: |% +*.*p|---|%5s|\n", w, e, p, "% +5.*p");
-	printf("This is test 13: |%-0*.*p|---|%5s|\n", w, e, p, "%-05.*p");
-	printf("This is test 14: |% -*.*p|---|%5s|\n", w, e, p, "% -5.*p");
-	printf("This is test 15: |% 0*.*p|---|%5s|\n\n", w, e, p, "% 05.*p");
+	printf("This is printf  0: |%*.*p|---|%5s|\n", w, e, p, "%5.*p");
+	printf("This is printf  1: |%+*.*p|---|%5s|\n", w, e, p, "%+5.*p");
+	printf("This is printf  2: |%-*.*p|---|%5s|\n", w, e, p, "%-5.*p");
+	printf("This is printf  3: |% *.*p|---|%5s|\n", w, e, p, "% 5.*p");
+	printf("This is printf  4: |%#*.*p|---|%5s|\n", w, e, p, "%#5.*p");
+	printf("This is printf  5: |%0*.*p|---|%5s|\n", w, e, p, "%05.*p");
+	printf("This is printf  6: |%#+*.*p|---|%5s|\n", w, e, p, "%#+5.*p");
+	printf("This is printf  7: |%#-*.*p|---|%5s|\n", w, e, p, "%#-5.*p");
+	printf("This is printf  8: |%#0*.*p|---|%5s|\n", w, e, p, "%#05.*p");
+	printf("This is printf  9: |% #*.*p|---|%5s|\n", w, e, p, "% #5.*p");
+	printf("This is printf 10: |%+-*.*p|---|%5s|\n", w, e, p, "%+-5.*p");
+	printf("This is printf 11: |%+0*.*p|---|%5s|\n", w, e, p, "%+05.*p");
+	printf("This is printf 12: |% +*.*p|---|%5s|\n", w, e, p, "% +5.*p");
+	printf("This is printf 13: |%-0*.*p|---|%5s|\n", w, e, p, "%-05.*p");
+	printf("This is printf 14: |% -*.*p|---|%5s|\n", w, e, p, "% -5.*p");
+	printf("This is printf 15: |% 0*.*p|---|%5s|\n\n", w, e, p, "% 05.*p");
 
 	printf("STANDART TYPE p:\n");
-	printf("This is test  0: |%*p|---|%5s|\n", w, p, "%*p");
-	printf("This is test  1: |%+*p|---|%5s|\n", w, p, "%+*p");
-	printf("This is test  2: |%-*p|---|%5s|\n", w, p, "%-*p");
-	printf("This is test  3: |% *p|---|%5s|\n", w, p, "% *p");
-	printf("This is test  4: |%#*p|---|%5s|\n", w, p, "%#*p");
-	printf("This is test  5: |%0*p|---|%5s|\n", w, p, "%0*p");
-	printf("This is test  6: |%#+*p|---|%5s|\n", w, p, "%#+*p");
-	printf("This is test  7: |%#-*p|---|%5s|\n", w, p, "%#-*p");
-	printf("This is test  8: |%#0*p|---|%5s|\n", w, p, "%#0*p");
-	printf("This is test  9: |% #*p|---|%5s|\n", w, p, "% #*p");
-	printf("This is test 10: |%+-*p|---|%5s|\n", w, p, "%+-*p");
-	printf("This is test 11: |%+0*p|---|%5s|\n", w, p, "%+0*p");
-	printf("This is test 12: |% +*p|---|%5s|\n", w, p, "% +*p");
-	printf("This is test 13: |%-0*p|---|%5s|\n", w, p, "%-0*p");
-	printf("This is test 14: |% -*p|---|%5s|\n", w, p, "% -*p");
-	printf("This is test 15: |% 0*p|---|%5s|\n\n", w, p, "% 0*p");
+	printf("This is printf  0: |%*p|---|%5s|\n", w, p, "%*p");
+	printf("This is printf  1: |%+*p|---|%5s|\n", w, p, "%+*p");
+	printf("This is printf  2: |%-*p|---|%5s|\n", w, p, "%-*p");
+	printf("This is printf  3: |% *p|---|%5s|\n", w, p, "% *p");
+	printf("This is printf  4: |%#*p|---|%5s|\n", w, p, "%#*p");
+	printf("This is printf  5: |%0*p|---|%5s|\n", w, p, "%0*p");
+	printf("This is printf  6: |%#+*p|---|%5s|\n", w, p, "%#+*p");
+	printf("This is printf  7: |%#-*p|---|%5s|\n", w, p, "%#-*p");
+	printf("This is printf  8: |%#0*p|---|%5s|\n", w, p, "%#0*p");
+	printf("This is printf  9: |% #*p|---|%5s|\n", w, p, "% #*p");
+	printf("This is printf 10: |%+-*p|---|%5s|\n", w, p, "%+-*p");
+	printf("This is printf 11: |%+0*p|---|%5s|\n", w, p, "%+0*p");
+	printf("This is printf 12: |% +*p|---|%5s|\n", w, p, "% +*p");
+	printf("This is printf 13: |%-0*p|---|%5s|\n", w, p, "%-0*p");
+	printf("This is printf 14: |% -*p|---|%5s|\n", w, p, "% -*p");
+	printf("This is printf 15: |% 0*p|---|%5s|\n\n", w, p, "% 0*p");
 
 	printf("STANDART TYPE p:\n");
-	printf("This is test  0: |%p|---|%5s|\n", p, "%p");
-	printf("This is test  1: |%+p|---|%5s|\n", p, "%+p");
-	printf("This is test  2: |%-p|---|%5s|\n", p, "%-p");
-	printf("This is test  3: |% p|---|%5s|\n", p, "% p");
-	printf("This is test  4: |%#p|---|%5s|\n", p, "%#p");
-	printf("This is test  5: |%0p|---|%5s|\n", p, "%0p");
-	printf("This is test  6: |%#+p|---|%5s|\n", p, "%#+p");
-	printf("This is test  7: |%#-p|---|%5s|\n", p, "%#-p");
-	printf("This is test  8: |%#0p|---|%5s|\n", p, "%#0p");
-	printf("This is test  9: |% #p|---|%5s|\n", p, "% #p");
-	printf("This is test 10: |%+-p|---|%5s|\n", p, "%+-p");
-	printf("This is test 11: |%+0p|---|%5s|\n", p, "%+0p");
-	printf("This is test 12: |% +p|---|%5s|\n", p, "% +p");
-	printf("This is test 13: |%-0p|---|%5s|\n", p, "%-0p");
-	printf("This is test 14: |% -p|---|%5s|\n", p, "% -p");
-	printf("This is test 15: |% 0p|---|%5s|\n\n", p, "% 0p");
+	printf("This is printf  0: |%p|---|%5s|\n", p, "%p");
+	printf("This is printf  1: |%+p|---|%5s|\n", p, "%+p");
+	printf("This is printf  2: |%-p|---|%5s|\n", p, "%-p");
+	printf("This is printf  3: |% p|---|%5s|\n", p, "% p");
+	printf("This is printf  4: |%#p|---|%5s|\n", p, "%#p");
+	printf("This is printf  5: |%0p|---|%5s|\n", p, "%0p");
+	printf("This is printf  6: |%#+p|---|%5s|\n", p, "%#+p");
+	printf("This is printf  7: |%#-p|---|%5s|\n", p, "%#-p");
+	printf("This is printf  8: |%#0p|---|%5s|\n", p, "%#0p");
+	printf("This is printf  9: |% #p|---|%5s|\n", p, "% #p");
+	printf("This is printf 10: |%+-p|---|%5s|\n", p, "%+-p");
+	printf("This is printf 11: |%+0p|---|%5s|\n", p, "%+0p");
+	printf("This is printf 12: |% +p|---|%5s|\n", p, "% +p");
+	printf("This is printf 13: |%-0p|---|%5s|\n", p, "%-0p");
+	printf("This is printf 14: |% -p|---|%5s|\n", p, "% -p");
+	printf("This is printf 15: |% 0p|---|%5s|\n\n", p, "% 0p");
 
-/*
+
 	// printf("-->|");         
 	// printf("%-15x", 542);
 	// printf("|<--\n");
@@ -290,7 +564,7 @@ int	main()
 	// printf("%s %s", NULL, "string");   
 	// printf("|<--\n");
 
-/*	printf("-->|");
+	printf("-->|");
 	printf("@moulitest: %c", 0);
 	printf("|<--\n");
 	printf("-->|");
@@ -302,7 +576,7 @@ int	main()
 	printf("-->|");
 	printf("% c", 0);
 	printf("|<--\n");
-*/
+
 	// printf("-->|");
 	// printf("@moulitest: %.o %.0o", 0, 0); 
 	// printf("|<--\n");
@@ -381,7 +655,7 @@ int	main()
 	// printf("%llu", 4999999999); 
 	// printf("|<--\n");
 
-/*	printf("-->|");
+	printf("-->|");
 	printf("%#llx", 9223372036854775807);
 	printf("|<--\n");
 	printf("-->|");
@@ -390,8 +664,8 @@ int	main()
 	printf("-->|");
 	printf("%s  ", "this is a string");
 	printf("|<--\n");
-*/
-/*	printf("-->|");
+
+	printf("-->|");
 	printf("%");
 	printf("|<--\n");
 	printf("-->|");
@@ -496,9 +770,9 @@ int	main()
 	printf("-->|");
 	printf("@main_ftprintf: %###-#0000 33...12..#0+0d", 256);
 	printf("|<--\n");
-*/
 
-/*	printf("-->|");
+
+	printf("-->|");
 	printf("%s", "this is a string");
 	printf("|<--\n");
 	printf("-->|");

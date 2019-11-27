@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 18:49:33 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 14:02:02 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <math.h>
-# include "../libft/includes/libft.h"
+# include "libft.h"
 
 # include <stdio.h>
 

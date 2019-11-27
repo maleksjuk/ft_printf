@@ -6,13 +6,13 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:39:52 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 16:32:48 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 16:20:37 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static char	*num_null(t_printf **p)
+static char	*num_null(void)
 {
 	char	*num;
 
@@ -30,12 +30,22 @@ static char	*num_null(t_printf **p)
 
 void		s_minus(t_printf **p, char *num, char *str, int tab[2])
 {
+	int	i;
+	
 	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width ||
 		(*p)->width == 0))
 	{
+		i = tab[0];
 		tab[0] = 0;
-		while ((*p)->precision - tab[1] > 0)
+		while (((*p)->precision - tab[1] > 0) && (num[tab[0]]))
 			str[tab[1]++] = num[tab[0]++];
+		tab[0] = 0;
+		//tab[1]--;
+		while ((*p)->precision - tab[0] > i && (*p)->width > 0)
+		{
+			str[tab[1]++] = ' ';
+			i++;
+		}
 		tab[1] += simvol_out(p, tab[1], ' ', &str[tab[1]]);
 	}
 	else
@@ -71,11 +81,19 @@ void		s_zero(t_printf **p, char *num, char *str, int tab[2])
 
 void		s_default(t_printf **p, char *num, char *str, int tab[2])
 {
-	if ((*p)->precision > -1 && ((*p)->precision < (*p)->width ||
+	int	i;
+
+	if ((*p)->precision > -1 && ((*p)->precision <= (*p)->width ||
 		(*p)->width == 0))
 	{
 		while ((*p)->width - (*p)->precision > tab[1])
 			str[tab[1]++] = ' ';
+		i = 0;
+		while ((*p)->precision - i > tab[0] && (*p)->width > 0)
+		{
+			str[tab[1]++] = ' ';
+			i++;
+		}
 		tab[0] = 0;
 		while ((*p)->precision - tab[0] > 0)
 			str[tab[1]++] = num[tab[0]++];
@@ -119,7 +137,7 @@ int			ft_s(t_printf **p)
 
 	num = (*p)->str_val;
 	if (!num)
-		num = num_null(p);
+		num = num_null();
 	//else
 	//	check_str(p);
 	tab[0] = ft_strlen(num);
