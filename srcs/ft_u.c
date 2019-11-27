@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 14:04:09 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/27 16:31:47 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ int		ft_u(t_printf **p)
 	free(str);
 	//if (num < 0)
 	//	num_str--;
-	free(num_str);
+	//free(num_str);
 	return (0);
 }
