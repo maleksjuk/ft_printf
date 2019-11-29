@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 20:50:45 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:48:18 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int		ft_d(t_printf **p)
 		d_zero(p, num, str, tab, num_str);
 	else
 		d_def(p, num, str, tab, num_str);
+	(*p)->final_len += ft_strlen(str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	if (num < 0)

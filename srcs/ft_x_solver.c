@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:53:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 20:54:03 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:49:14 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		ft_x_universe(t_printf **p, char c, char x)
 		x_zero(p, str, tab, trans);
 	else
 		x_default(p, str, tab, trans);
+	(*p)->final_len += ft_strlen(str);
 	if ((*p)->final_str[0] == '\0')
 		(*p)->final_str = str;
 	else

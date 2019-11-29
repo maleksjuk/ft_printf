@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:31:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 20:47:33 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:48:33 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		ft_o(t_printf **p)
 		o_zero(p, str, tab, trans);
 	else
 		o_default(p, str, tab, trans);
+	(*p)->final_len += ft_strlen(str);
 	if ((*p)->final_str[0] == '\0')
 		(*p)->final_str = str;
 	else

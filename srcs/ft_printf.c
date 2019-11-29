@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:09 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:20:12 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:51:08 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_final(t_printf **p)
 		ft_putstr((*p)->final_str);
 	else
 		ft_putstr_len((*p)->final_str, (*p)->final_len);
-//	(*p)->final_len = ft_strlen((*p)->final_str);
 	free((*p)->final_str);
 //	free(*p);
 	return (0);

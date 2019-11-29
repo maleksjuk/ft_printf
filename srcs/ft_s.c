@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:39:52 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 20:56:30 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:48:58 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void		s_default(t_printf **p, char *num, char *str, int tab[2])
 
 void		s_return(t_printf **p, char *str)
 {
+	(*p)->final_len += ft_strlen(str);
 	if ((*p)->final_str[0] == '\0')
 		(*p)->final_str = str;
 	else
