@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 16:00:21 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:03:34 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,18 @@ void	ft_choose_value(t_printf **p)
 	else if ((*p)->type == 's')
 		(*p)->str_val = (char *)(va_arg((*p)->ap, char *));
 	else if ((*p)->type == 'f' && ((*p)->size == 'L' || (*p)->size == 'l'))
-		(*p)->double_val = (long double)(va_arg((*p)->ap, long double));
+		(*p)->double_val = (double)(va_arg((*p)->ap, long double));
 	else if ((*p)->type == 'f' || (*p)->type == 'F')
 		(*p)->double_val = (double)(va_arg((*p)->ap, double));
 	else if ((*p)->type == 0)
 		(*p)->int_val = (intmax_t)((*p)->format[(*p)->index - 1]);
 	else if ((*p)->type == 'c')
-		(*p)->int_val = (intmax_t)(va_arg((*p)->ap, intmax_t));
+	{
+		if ((*p)->size == 'l')
+			(*p)->int_val = (unsigned long)(va_arg((*p)->ap, unsigned long));
+		else
+			(*p)->int_val = (intmax_t)(va_arg((*p)->ap, intmax_t));
+	}
 	else
 		ft_int_value(p);
 }

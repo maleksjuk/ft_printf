@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:09 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 14:05:52 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:20:12 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	ft_final(t_printf **p)
 {
-	ft_putstr((*p)->final_str);
-	(*p)->final_len = ft_strlen((*p)->final_str);
+	if ((*p)->final_len == 0)
+		ft_putstr((*p)->final_str);
+	else
+		ft_putstr_len((*p)->final_str, (*p)->final_len);
+//	(*p)->final_len = ft_strlen((*p)->final_str);
 	free((*p)->final_str);
 //	free(*p);
 	return (0);
@@ -37,13 +40,14 @@ int	ft_construct(t_printf **p)
 	(*p)->type = 0;
 	(*p)->size = 0;
 	(*p)->spec_mask = "diouxXcsfp";
-	(*p)->size_mask = "hl";
+	(*p)->size_mask = "hlL";
 	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	t_printf *p;
+
 	if (!(p = (t_printf*)malloc(sizeof(t_printf))))
 		return (-1);
 	if (format[0] == '\0')

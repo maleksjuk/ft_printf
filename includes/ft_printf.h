@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 14:02:02 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 21:20:23 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ void	ft_choose_value(t_printf **p);
 
 // format.c
 int		max_val(int a, int b);
-int		transform(uintmax_t num, unsigned int system, char dec, char *str);
 int		len_nbr(intmax_t num);
 int		len_nbr_u(uintmax_t num);
+
+// conversion.c
+int		transform(uintmax_t num, unsigned int system, char dec, char *str);
 int		simvol_out(t_printf **p, int len, char c, char *str);
 int		for_precision(t_printf **p, int len, char *str);
 
@@ -83,6 +85,7 @@ int		ft_u(t_printf **p);
 int		ft_o(t_printf **p);
 int		ft_x(t_printf **p);
 int		ft_x2(t_printf **p);
+int		ft_x_universe(t_printf **p, char c, char x);
 
 // chars.c
 int		ft_c(t_printf **p);
@@ -92,7 +95,12 @@ int		ft_p(t_printf **p);
 // floats.c
 int 	ft_f(t_printf **p);
 
-//color.c
+// color.c
 int		ft_set_color(char **format, int i);
+
+
+// ft_lib_len.c
+void	ft_putstr_len(char const *s, int len);
+char	*ft_strjoin_len(char const *s1, char const *s2, int len_str);
 
 #endif

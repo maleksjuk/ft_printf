@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/28 15:26:12 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:50:45 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 {
 	int	help;
 
-	help = tab[0] + (*p)->precision - tab[0] + tab[3] + 1;// + 1;
+	help = tab[0] + (*p)->precision - tab[0] + tab[3] + 1;
 	if ((*p)->precision > 0 && tab[0] < (*p)->precision)
 		tab[2] += simvol_out(p, help - 1, ' ', &str[tab[2]]);
 	else
@@ -68,8 +68,6 @@ void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
 		str[tab[2]++] = ' ';
 	if (num == 0 && (*p)->precision == 0)
 		tab[2] += for_precision(p, tab[0] - tab[3] + 1, &str[tab[2]]);
-	//else if (tab[3])
-	//	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
 	else
 		tab[2] += for_precision(p, tab[0] - tab[3] - 1 + 1, &str[tab[2]]);
 	ft_strcpy(&str[tab[2]], num_str);
@@ -96,7 +94,7 @@ char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
 	if (num == 0 && (*p)->precision == 0)
 	{
 		num_str = "\0";
-		tab[0]--;// = 0;
+		tab[0]--;
 	}
 	return (num_str);
 }
@@ -133,9 +131,4 @@ int		ft_d(t_printf **p)
 		num_str--;
 //	free(num_str);
 	return (0);
-}
-
-int		ft_i(t_printf **p)
-{
-	return (ft_d(p));
 }

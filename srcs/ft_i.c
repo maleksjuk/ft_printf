@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_x.c                                             :+:      :+:    :+:   */
+/*   ft_i.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 14:29:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 20:54:10 by obanshee         ###   ########.fr       */
+/*   Created: 2019/11/29 20:50:24 by obanshee          #+#    #+#             */
+/*   Updated: 2019/11/29 20:50:40 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_x(t_printf **p)
+int		ft_i(t_printf **p)
 {
-	return (ft_x_universe(p, 'a', 'x'));
-}
-
-int		ft_x2(t_printf **p)
-{
-	return (ft_x_universe(p, 'A', 'X'));
+	return (ft_d(p));
 }

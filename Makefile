@@ -6,7 +6,7 @@
 #    By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/09 13:47:22 by pguitar           #+#    #+#              #
-#    Updated: 2019/11/23 18:53:43 by obanshee         ###   ########.fr        #
+#    Updated: 2019/11/29 21:20:49 by obanshee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,9 @@ SRCS_NAME = ft_atoi.c \
 	   ft_isupper.c \
 	   ft_islower.c \
 	   ft_strnlen.c \
-		ft_printf.c format.c pars_1.c pars_2.c size.c chars.c floats.c \
-		ft_d.c ft_u.c ft_o.c ft_x.c ft_p.c ft_s.c color.c
+		ft_printf.c format.c pars_1.c pars_2.c size.c ft_c.c floats.c \
+		ft_d.c ft_u.c ft_o.c ft_x.c ft_p.c ft_s.c color.c \
+		ft_x_solver.c conversion.c ft_i.c ft_lib_len.c
 
 SRCS_PATH = srcs/
 OBJ_PATH  = obj/

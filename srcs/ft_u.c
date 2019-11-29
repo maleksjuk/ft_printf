@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 16:31:47 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:53:07 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
 {
 	char	*num_str;
 	char	*part;
-	
+
 	if (num / 10 == MAX_INT && num % 10 == -8)
 	{
 		num_str = ft_strnew(22);
