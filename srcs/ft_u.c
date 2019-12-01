@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:49:06 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 15:51:11 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	u_default(t_printf **p, char *str, int tab[3], char *num_str)
 char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
 {
 	char	*num_str;
-	char	*part;
 
 	if (num / 10 == MAX_INT && num % 10 == -8)
 	{
@@ -50,8 +49,8 @@ char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
 	}
 	else if (num > 10000000000)
 	{
-		part = ft_itoa(num / 10000);
-		num_str = ft_strjoin(part, ft_itoa(num % 10000));
+		num_str = ft_itoa(num / 10000);
+		num_str = ft_strjoin(num_str, ft_itoa(num % 10000));
 	}
 	else
 		num_str = ft_itoa(num);
@@ -62,7 +61,7 @@ char	*ft_u_num_str(t_printf **p, uintmax_t num, int tab[3])
 	}
 	if (num == 0 && (*p)->precision == 0)
 	{
-		num_str = "\0";
+		num_str[0] = '\0';
 		tab[0] = 0;
 	}
 	return (num_str);
@@ -92,8 +91,5 @@ int		ft_u(t_printf **p)
 	(*p)->final_len += ft_strlen(str);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
-	//if (num < 0)
-	//	num_str--;
-	//free(num_str);
 	return (0);
 }

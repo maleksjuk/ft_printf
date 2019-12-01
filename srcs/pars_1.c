@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:13 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/27 13:42:08 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 15:55:01 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int	ft_pars(t_printf **p)
 	(*p)->index = ft_search_width(p, (*p)->index);
 	(*p)->index = ft_search_precision(p, (*p)->index);
 	(*p)->index = ft_search_size(p, (*p)->index);
-	(*p)->index = ft_search_type(p, (*p)->index);
+	if (((*p)->index = ft_search_type(p, (*p)->index)) == -1)
+		return (-1);
 	ft_choose_value(p);
 	ft_choose_type(p);
 	return (0);

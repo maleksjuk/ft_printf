@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:20:23 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 16:19:06 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,15 @@ int		ft_set_color(char **format, int i);
 // ft_lib_len.c
 void	ft_putstr_len(char const *s, int len);
 char	*ft_strjoin_len(char const *s1, char const *s2, int len_str);
+
+// ft_s_adapt.c
+void	s_minus(t_printf **p, char *num, char *str, int tab[2]);
+void	s_zero(t_printf **p, char *num, char *str, int tab[2]);
+void	s_default(t_printf **p, char *num, char *str, int tab[2]);
+
+// ft_d_adapt.c
+void	d_minus(t_printf **p, char *str, int tab[5], char *num_str);
+void	d_zero(t_printf **p, char *str, int tab[5], char *num_str);
+void	d_def(t_printf **p, char *str, int tab[5], char *num_str);
 
 #endif

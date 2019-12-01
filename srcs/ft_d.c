@@ -6,74 +6,13 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:22 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:48:18 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 16:14:26 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	d_minus(t_printf **p, intmax_t num, char *str, int tab[4],
-				char *num_str)
-{
-	if (num < 0)
-	{
-		str[tab[2]++] = '-';
-		num *= -1;
-	}
-	else if ((*p)->plus && num >= 0)
-		str[tab[2]++] = '+';
-	else if ((*p)->space && num >= 0)
-		str[tab[2]++] = ' ';
-	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], num_str);
-	if (tab[3])
-		tab[2]--;
-	tab[2] += tab[0];
-	tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
-}
-
-void	d_zero(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
-{
-	if (num < 0)
-	{
-		str[tab[2]++] = '-';
-		num *= -1;
-	}
-	else if ((*p)->plus && num >= 0)
-		str[tab[2]++] = '+';
-	else if ((*p)->space)
-		str[tab[2]++] = ' ';
-	tab[2] += for_precision(p, tab[0] - tab[3], &str[tab[2]]);
-	tab[2] += simvol_out(p, tab[0], '0', &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], num_str);
-}
-
-void	d_def(t_printf **p, intmax_t num, char *str, int tab[4], char *num_str)
-{
-	int	help;
-
-	help = tab[0] + (*p)->precision - tab[0] + tab[3] + 1;
-	if ((*p)->precision > 0 && tab[0] < (*p)->precision)
-		tab[2] += simvol_out(p, help - 1, ' ', &str[tab[2]]);
-	else
-		tab[2] += simvol_out(p, tab[0], ' ', &str[tab[2]]);
-	if (num < 0)
-	{
-		str[tab[2]++] = '-';
-		num *= -1;
-	}
-	else if ((*p)->plus && num >= 0)
-		str[tab[2]++] = '+';
-	else if ((*p)->space && num >= 0)
-		str[tab[2]++] = ' ';
-	if (num == 0 && (*p)->precision == 0)
-		tab[2] += for_precision(p, tab[0] - tab[3] + 1, &str[tab[2]]);
-	else
-		tab[2] += for_precision(p, tab[0] - tab[3] - 1 + 1, &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], num_str);
-}
-
-char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
+char		*ft_num_str(t_printf **p, intmax_t num, int tab[5])
 {
 	char	*num_str;
 
@@ -93,21 +32,43 @@ char	*ft_num_str(t_printf **p, intmax_t num, int tab[4])
 	}
 	if (num == 0 && (*p)->precision == 0)
 	{
-		num_str = "\0";
+		num_str[0] = '\0';
 		tab[0]--;
 	}
 	return (num_str);
 }
 
-int		ft_d(t_printf **p)
+static int	d_continue(t_printf **p, char *str, int tab[5], char *num_str)
+{
+	if ((*p)->minus)
+		d_minus(p, str, tab, num_str);
+	else if ((*p)->zero && (*p)->precision < 0)
+		d_zero(p, str, tab, num_str);
+	else
+		d_def(p, str, tab, num_str);
+	(*p)->final_len += ft_strlen(str);
+	if ((*p)->final_str[0] == '\0')
+		(*p)->final_str = str;
+	else
+	{
+		(*p)->final_str = ft_strjoin((*p)->final_str, str);
+		free(str);
+	}
+	if (tab[4])
+		num_str--;
+	return (0);
+}
+
+int			ft_d(t_printf **p)
 {
 	intmax_t	num;
 	char		*str;
 	char		*num_str;
-	int			tab[4];
+	int			tab[5];
 
 	tab[2] = 0;
 	tab[3] = 0;
+	tab[4] = 0;
 	num = (*p)->int_val;
 	if (num < 0 || (*p)->plus || (*p)->space)
 		tab[3] = 1;
@@ -119,17 +80,10 @@ int		ft_d(t_printf **p)
 	if (!str)
 		return (1);
 	num_str = ft_num_str(p, num, tab);
-	if ((*p)->minus)
-		d_minus(p, num, str, tab, num_str);
-	else if ((*p)->zero && (*p)->precision < 0)
-		d_zero(p, num, str, tab, num_str);
-	else
-		d_def(p, num, str, tab, num_str);
-	(*p)->final_len += ft_strlen(str);
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
 	if (num < 0)
-		num_str--;
-//	free(num_str);
-	return (0);
+	{
+		num *= -1;
+		tab[4] = 1;
+	}
+	return (d_continue(p, str, tab, num_str));
 }

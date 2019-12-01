@@ -6,13 +6,13 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:53:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:49:14 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 15:54:29 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	x_minus(t_printf **p, char *str, int tab[4], char *trans)
+void		x_minus(t_printf **p, char *str, int tab[4], char *trans)
 {
 	if ((*p)->hash)
 	{
@@ -29,7 +29,7 @@ void	x_minus(t_printf **p, char *str, int tab[4], char *trans)
 	str[tab[2]] = '\0';
 }
 
-void	x_zero(t_printf **p, char *str, int tab[4], char *trans)
+void		x_zero(t_printf **p, char *str, int tab[4], char *trans)
 {
 	if ((*p)->hash)
 	{
@@ -40,7 +40,7 @@ void	x_zero(t_printf **p, char *str, int tab[4], char *trans)
 	ft_strcpy(&str[tab[2]], trans);
 }
 
-void	x_default(t_printf **p, char *str, int tab[4], char *trans)
+void		x_default(t_printf **p, char *str, int tab[4], char *trans)
 {
 	int	help;
 
@@ -59,33 +59,8 @@ void	x_default(t_printf **p, char *str, int tab[4], char *trans)
 	ft_strcpy(&str[tab[2]], trans);
 }
 
-int		ft_x_universe(t_printf **p, char c, char x)
+static int	x_continue(t_printf **p, char *str, int tab[4], char *trans)
 {
-	uintmax_t	num;
-	char		*str;
-	char		*trans;
-	int			tab[4];
-
-	tab[3] = (int)x;
-	tab[2] = 0;
-	num = (*p)->uint_val;
-	if (num == 0)
-		(*p)->hash = 0;
-	trans = ft_strnew(len_nbr(num) * 2);
-	if (!trans)
-		return (1);
-	tab[0] = transform(num, 16, c, trans) + 1;
-	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
-	str = ft_strnew(tab[1] + (*p)->hash * 2 + 4);
-	if (!str)
-		return (1);
-	if ((*p)->hash)
-		tab[0] += 2;
-	if (num == 0 && (*p)->precision == 0)
-	{
-		trans[0] = '\0';
-		tab[0] = 0;
-	}
 	if ((*p)->minus)
 		x_minus(p, str, tab, trans);
 	else if ((*p)->zero && (*p)->precision < 0)
@@ -100,6 +75,34 @@ int		ft_x_universe(t_printf **p, char c, char x)
 		(*p)->final_str = ft_strjoin((*p)->final_str, str);
 		free(str);
 	}
-	free(trans);
 	return (0);
+}
+
+int			ft_x_universe(t_printf **p, char c, char x)
+{
+	uintmax_t	num;
+	char		*str;
+	char		*trans;
+	int			tab[4];
+
+	tab[3] = (int)x;
+	tab[2] = 0;
+	num = (*p)->uint_val;
+	if (num == 0)
+		(*p)->hash = 0;
+	if (!(trans = ft_strnew(len_nbr(num) * 2)))
+		return (1);
+	tab[0] = transform(num, 16, c, trans) + 1;
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
+	str = ft_strnew(tab[1] + (*p)->hash * 2 + 4);
+	if (!str)
+		return (1);
+	if ((*p)->hash)
+		tab[0] += 2;
+	if (num == 0 && (*p)->precision == 0)
+	{
+		trans[0] = '\0';
+		tab[0] = 0;
+	}
+	return (x_continue(p, str, tab, trans));
 }

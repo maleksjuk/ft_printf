@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/24 15:13:29 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 15:55:11 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		ft_search_type(t_printf **p, int i)
 {
+	if ((*p)->format[i] == '\0')
+		return (-1);
 	if ((*p)->format[i] != '\0' &&
 		ft_strchr((*p)->spec_mask, (*p)->format[i]))
 		(*p)->type = (*p)->format[i];
