@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:09 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 16:18:33 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 21:00:34 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_final(t_printf **p)
 
 int	ft_construct(t_printf **p)
 {
-	(*p)->final_len = 0;
 	(*p)->minus = 0;
 	(*p)->plus = 0;
 	(*p)->zero = 0;
@@ -52,6 +51,7 @@ int	ft_printf(const char *format, ...)
 	if (format[0] == '\0')
 		return (0);
 	va_start(p->ap, format);
+	p->final_len = 0;
 	p->index = 0;
 	p->final_str = NULL;
 	p->format = (char *)format;

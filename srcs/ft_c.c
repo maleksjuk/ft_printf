@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 15:09:55 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:18:08 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:48:24 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_c(t_printf **p)
 	int		i;
 
 	c = (wchar_t)(*p)->int_val;
-	i = max_val((*p)->precision, (*p)->width);
+	i = max_val(1, max_val((*p)->precision, (*p)->width));
 	str = ft_strnew(i + 1);
 	if (!str)
 		return (1);
@@ -33,7 +33,8 @@ int			ft_c(t_printf **p)
 	if ((*p)->minus)
 		i = i + simvol_out(p, 1, ' ', &str[i]);
 	(*p)->final_len += i;
-	(*p)->final_str = ft_strjoin_len((*p)->final_str, str, i);
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str, i,
+		(*p)->final_len - i);
 	free(str);
 	return (0);
 }

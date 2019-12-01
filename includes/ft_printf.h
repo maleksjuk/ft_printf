@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:04:26 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 16:19:06 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 21:00:47 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,26 @@ int		ft_c(t_printf **p);
 int		ft_s(t_printf **p);
 int		ft_p(t_printf **p);
 
-// floats.c
+// floats_left.c
 int 	ft_f(t_printf **p);
+void	ft_left_part(long double *num, char **str, int *i, t_printf **p);
+
+// floats_right.c
+void	ft_right_part(char **str, int *i, long double num, int precision);
+long double		ft_modulo(long double num);
+
+// floats_flags.c
+int		f_def(t_printf **p, long double *num, char *str, int tab[4]);
+int		f_zero(t_printf **p, long double *num, char *str, int tab[4]);
+int		f_minus(t_printf **p, long double *num, char *str, int tab[4]);
 
 // color.c
 int		ft_set_color(char **format, int i);
 
-
 // ft_lib_len.c
 void	ft_putstr_len(char const *s, int len);
-char	*ft_strjoin_len(char const *s1, char const *s2, int len_str);
+char	*ft_strjoin_len(char const *s1, char const *s2, int len_str, int len_fin);
+void	ft_free(char *str1, char *str2);
 
 // ft_s_adapt.c
 void	s_minus(t_printf **p, char *num, char *str, int tab[2]);

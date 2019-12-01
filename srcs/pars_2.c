@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 15:55:11 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:56:31 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int		ft_search_spec_2(t_printf **p, int i)
 		tmp1[i] = '\0';
 		tmp1 = ft_strncpy(tmp1, (*p)->format, i);
 		tmp2 = (*p)->final_str;
-		(*p)->final_str = ft_strjoin((*p)->final_str, tmp1);
-		free(tmp1);
-		free(tmp2);
+		(*p)->final_str = ft_strjoin_len((*p)->final_str, tmp1, i,
+			(*p)->final_len - i);
+		ft_free(tmp1, tmp2);
 	}
 	return (0);
 }
@@ -61,13 +61,11 @@ int		ft_search_spec_1(t_printf **p, int i)
 	if ((*p)->final_str)
 	{
 		(*p)->format = (*p)->format + (*p)->index;
-		if (i == -1)
-			i = 1;
-		else
-			i = 0;
+		i = (i == -1) ? 1 : 0;
 	}
 	while (((*p)->format[i]) != '\0' && ((*p)->format[i]) != '%')
 		i++;
+	(*p)->final_len += i;
 	if (ft_search_spec_2(p, i) == -1)
 		return (-1);
 	if ((*p)->format[i] == '\0')

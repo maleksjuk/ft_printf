@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:11:45 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:18:37 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:54:19 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_putstr_len(char const *s, int len)
 			ft_putchar(s[i++]);
 }
 
-char	*ft_strjoin_len(char const *s1, char const *s2, int len_str)
+char	*ft_strjoin_len(char const *s1, char const *s2, int len_str,
+						int len_fin)
 {
 	int		i;
 	int		len;
@@ -31,14 +32,20 @@ char	*ft_strjoin_len(char const *s1, char const *s2, int len_str)
 	i = -1;
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1) + len_str;
+	len = len_fin + len_str;
 	if (!(dest = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
-	while (s1[++i] != '\0')
+	while (++i < len_fin)
 		dest[i] = s1[i];
 	len = 0;
 	while (len < len_str)
 		dest[i++] = s2[len++];
 	dest[i] = '\0';
 	return (dest);
+}
+
+void	ft_free(char *str1, char *str2)
+{
+	free(str1);
+	free(str2);
 }
