@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+#include <float.h>
 long double		ft_pow(int i)
 {
 	long double modulo;
@@ -112,6 +112,11 @@ void	ft_left_part(long double *num, char **str, int *i, t_printf **p)
 	intmax_t	modulo_tmp;
 
 	x = 0;
+	if (*num < 0)
+	{
+		*str[(*i)++] = '-';
+		(*num) *= -1;
+	}
 	modulo = (intmax_t)ft_modulo(*num);
 	modulo_tmp = (intmax_t)modulo;
 	while ((int)*num != 0)
@@ -128,6 +133,8 @@ void	ft_left_part(long double *num, char **str, int *i, t_printf **p)
 		x -= (x / (intmax_t)modulo_tmp) * (intmax_t)modulo_tmp;
 		modulo_tmp /= 10;
 	}
+	if ((*p)->precision != 0 || (((*p)->hash) && (*p)->precision == 0))
+		(*str)[(*i)++] = '.';
 }
 
 int 	ft_infinity(t_printf **p, double num)
@@ -146,40 +153,142 @@ int 	ft_infinity(t_printf **p, double num)
 	return (1);
 }
 
+
+int	f_minus(t_printf **p, long double *num, char *str, int tab[4])
+{
+	int	help;
+
+	help = tab[0] + (*p)->precision;
+	if ((*p)->precision > 0 || (((*p)->hash) && (*p)->precision == 0))
+		help++;
+	if ((*num < 0 || 1 / (*num) == 1 / -0.0) && ++help)
+	{
+		str[tab[2]++] = '-';
+		(*num) *= -1;
+	}
+	else if ((*p)->plus && num >= 0 && ++help)
+		str[tab[2]++] = '+';
+	else if ((*p)->space && num >= 0 && ++help)
+		str[tab[2]++] = ' ';
+	ft_left_part(num, &str, &tab[2], p);
+	ft_right_part(&str, &tab[2], *num, (*p)->precision);
+	tab[2] += simvol_out(p, help, ' ', &str[help]);
+	return (tab[2]);
+}
+
+int	f_zero(t_printf **p, long double *num, char *str, int tab[4])
+{
+	int	help;
+
+	help = tab[0] + (*p)->precision + tab[3];
+	if (*num < 0 || 1 / (*num) == 1 / -0.0)
+	{
+		str[tab[2]++] = '-';
+		(*num) *= -1;
+	}
+	else if ((*p)->plus && num >= 0)
+		str[tab[2]++] = '+';
+	else if ((*p)->space)
+		str[tab[2]++] = ' ';
+	if ((*p)->precision > 0 || (((*p)->hash) && (*p)->precision == 0))
+		help++;
+	if ((*p)->hash)
+		str[tab[2]++] = '0';
+	tab[2] += simvol_out(p, help, '0', &str[tab[2]]);
+	return (tab[2]);
+}
+
+int	f_def(t_printf **p, long double *num, char *str, int tab[4])
+{
+	int	help;
+
+	help = tab[0] + (*p)->precision + tab[3];
+	if ((*p)->precision > 0)
+		help++;
+	tab[2] += simvol_out(p, help, ' ', &str[tab[2]]);
+	if (*num < 0 || 1 / (*num) == 1 / -0.0)//(*num) == -LDBL_MIN)// || *num == (0.)
+	{
+		str[tab[2]++] = '-';
+		(*num) *= -1;
+	}
+	else if ((*p)->plus && num >= 0)
+		str[tab[2]++] = '+';
+	else if ((*p)->space && num >= 0)
+		str[tab[2]++] = ' ';
+	return (tab[2]);
+}
+
+
 int 	ft_f(t_printf **p)
 {
-	int		len;
 	int		i;
 	char	*str;
 	long double	num;
+	int			tab[4];
 
 	i = 0;
+	tab[2] = 0;
+	tab[3] = 0;
 	num = (*p)->double_val;
 	if (ft_infinity(p, num))
 		return (1);
-	len = len_nbr((intmax_t)num);
 	if ((*p)->precision == -1)
 		(*p)->precision = 6;
-	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
-	if (!str)
+	if (num < 0 || (*p)->plus || (*p)->space || (*p)->minus)
+		tab[3] = 1;
+	tab[0] = len_nbr((intmax_t)num);
+	tab[1] = max_val((*p)->precision, (*p)->width) + tab[3] + tab[0];
+	if (!(str = ft_strnew(tab[1] + 1)))
 		return (1);
-	if ((*p)->plus && num > 0)
-		str[i++] = '+';
-	if (num < 0 || 1/(-0.0) == 1/num)
+	if ((*p)->minus)
+		i = f_minus(p, &num, str, tab);
+	else if ((*p)->zero)
+		i = f_zero(p, &num, str, tab);
+	else
+		i = f_def(p, &num, str, tab);
+	if (!(*p)->minus)
 	{
-		str[i++] = '-';
-		num = num * (-1);
+		ft_left_part(&num, &str, &i, p);
+		ft_right_part(&str, &i, num, (*p)->precision);
 	}
-	else if ((*p)->space && !(*p)->plus)
-		str[i++] = ' ';
-	ft_left_part(&num, &str, &i, p);
-	if ((*p)->precision != 0)
-		str[i++] = '.';
-	ft_right_part(&str, &i, num, (*p)->precision);
 	(*p)->final_str = ft_strjoin((*p)->final_str, str);
 	free(str);
 	return (0);
 }
+
+
+//int 	ft_f(t_printf **p)
+//{
+//	int		len;
+//	int		i;
+//	char	*str;
+//	long double	num;
+//
+//	i = 0;
+//	num = (*p)->double_val;
+//	if (ft_infinity(p, num))
+//		return (1);
+//	len = len_nbr((intmax_t)num);
+//	if ((*p)->precision == -1)
+//		(*p)->precision = 6;
+//	str = ft_strnew(len + (*p)->width + (*p)->precision + (*p)->space + 1);
+//	if (!str)
+//		return (1);
+//	if ((*p)->plus && num > 0)
+//		str[i++] = '+';
+//	if (num < 0 || 1/(-0.0) == 1/num)
+//	{
+//		str[i++] = '-';
+//		num = num * (-1);
+//	}
+//	else if ((*p)->space && !(*p)->plus)
+//		str[i++] = ' ';
+//	ft_left_part(&num, &str, &i, p);
+//	ft_right_part(&str, &i, num, (*p)->precision);
+//	(*p)->final_str = ft_strjoin((*p)->final_str, str);
+//	free(str);
+//	return (0);
+//}
 
 
 //long double		ft_pow(int i)
