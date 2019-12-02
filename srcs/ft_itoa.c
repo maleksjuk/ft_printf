@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:16:44 by pguitar           #+#    #+#             */
-/*   Updated: 2019/11/23 18:27:17 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 14:08:52 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*ft_itoa(intmax_t n)
 {
 	int			len;
 	intmax_t	n_len;
-	int 		flag;
+	int			flag;
 
 	len = 0;
 	flag = 0;
