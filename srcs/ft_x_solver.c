@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:53:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 17:58:23 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:37:59 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void		x_default(t_printf **p, char *str, int tab[4], char *trans)
 
 static int	x_continue(t_printf **p, char *str, int tab[4], char *trans)
 {
+	char	*tmp;
+
 	if ((*p)->minus)
 		x_minus(p, str, tab, trans);
 	else if ((*p)->zero && (*p)->precision < 0)
@@ -73,13 +75,12 @@ static int	x_continue(t_printf **p, char *str, int tab[4], char *trans)
 	else
 		x_default(p, str, tab, trans);
 	(*p)->final_len += ft_strlen(str);
-	if ((*p)->final_str[0] == '\0')
-		(*p)->final_str = str;
-	else
-	{
-		(*p)->final_str = ft_strjoin((*p)->final_str, str);
-		free(str);
-	}
+	tmp = (*p)->final_str;
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
+	free(trans);
+	free(str);
+	free(tmp);
 	return (0);
 }
 

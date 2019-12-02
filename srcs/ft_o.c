@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:31:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 15:48:18 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:36:00 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void		o_default(t_printf **p, char *str, int tab[3], char *trans)
 
 static int	o_continue(t_printf **p, char *str, int tab[3], char *trans)
 {
+	char	*tmp;
+
 	if ((*p)->hash)
 		tab[0]++;
 	if ((*p)->minus)
@@ -63,13 +65,12 @@ static int	o_continue(t_printf **p, char *str, int tab[3], char *trans)
 	else
 		o_default(p, str, tab, trans);
 	(*p)->final_len += ft_strlen(str);
-	if ((*p)->final_str[0] == '\0')
-		(*p)->final_str = str;
-	else
-	{
-		(*p)->final_str = ft_strjoin((*p)->final_str, str);
-		free(str);
-	}
+	tmp = (*p)->final_str;
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
+	free(trans);
+	free(str);
+	free(tmp);
 	return (0);
 }
 

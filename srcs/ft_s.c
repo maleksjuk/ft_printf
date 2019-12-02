@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:39:52 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 15:57:55 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:36:57 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static char	*num_null(void)
 
 void		s_return(t_printf **p, char *str)
 {
+	char	*tmp;
+
 	(*p)->final_len += ft_strlen(str);
-	if ((*p)->final_str[0] == '\0')
-		(*p)->final_str = str;
-	else
-	{
-		(*p)->final_str = ft_strjoin((*p)->final_str, str);
-		free(str);
-	}
+	tmp = (*p)->final_str;
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
+	free(str);
+	free(tmp);
 }
 
 int			ft_s(t_printf **p)
@@ -39,8 +39,9 @@ int			ft_s(t_printf **p)
 	char	*str;
 	int		tab[2];
 
-	num = (*p)->str_val;
-	if (!num)
+	if ((*p)->str_val)
+		num = ft_strdup((*p)->str_val);
+	else
 		num = num_null();
 	tab[0] = ft_strlen(num);
 	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
@@ -56,6 +57,7 @@ int			ft_s(t_printf **p)
 		s_zero(p, num, str, tab);
 	else
 		s_default(p, num, str, tab);
+	free(num);
 	s_return(p, str);
 	return (0);
 }

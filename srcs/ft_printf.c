@@ -14,13 +14,16 @@
 
 int	ft_final(t_printf **p)
 {
+	int len;
+
+	len = (*p)->final_len;
 	if ((*p)->final_len == 0)
 		ft_putstr((*p)->final_str);
 	else
 		ft_putstr_len((*p)->final_str, (*p)->final_len);
 	free((*p)->final_str);
-//	free(*p);
-	return (0);
+	free(*p);
+	return (len);
 }
 
 int	ft_construct(t_printf **p)
@@ -35,10 +38,12 @@ int	ft_construct(t_printf **p)
 	(*p)->uppercase = 0;
 	(*p)->int_val = 0;
 	(*p)->uint_val = 0;
+	(*p)->double_val = 0;
 	(*p)->type = 0;
 	(*p)->size = 0;
 	(*p)->spec_mask = "diouxXcsfp";
 	(*p)->size_mask = "hlL";
+	(*p)->str_val = NULL;
 	return (0);
 }
 
@@ -61,7 +66,6 @@ int	ft_printf(const char *format, ...)
 		if (ft_pars(&p) == -1)
 			break ;
 	}
-	ft_final(&p);
 	va_end(p->ap);
-	return (p->final_len);
+	return (ft_final(&p));
 }

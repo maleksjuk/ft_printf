@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:57:39 by obanshee          #+#    #+#             */
-/*   Updated: 2019/11/29 21:48:45 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:36:24 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,15 @@ void	p_default(t_printf **p, char *str, int tab[3], char *trans)
 
 void	p_final(t_printf **p, char *str, char *trans)
 {
+	char	*tmp;
+
+	tmp = (*p)->final_str;
 	(*p)->final_len += ft_strlen(str);
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
 	free(str);
 	free(trans);
+	free(tmp);
 }
 
 int		ft_p(t_printf **p)

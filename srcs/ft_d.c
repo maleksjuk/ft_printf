@@ -40,6 +40,8 @@ char		*ft_num_str(t_printf **p, intmax_t num, int tab[5])
 
 static int	d_continue(t_printf **p, char *str, int tab[5], char *num_str)
 {
+	char *tmp;
+
 	if ((*p)->minus)
 		d_minus(p, str, tab, num_str);
 	else if ((*p)->zero && (*p)->precision < 0)
@@ -47,15 +49,12 @@ static int	d_continue(t_printf **p, char *str, int tab[5], char *num_str)
 	else
 		d_def(p, str, tab, num_str);
 	(*p)->final_len += ft_strlen(str);
-	if ((*p)->final_str[0] == '\0')
-		(*p)->final_str = str;
-	else
-	{
-		(*p)->final_str = ft_strjoin((*p)->final_str, str);
-		free(str);
-	}
-	if (tab[4])
-		num_str--;
+	tmp = (*p)->final_str;
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
+	free(tmp);
+	free(str);
+	free(num_str);
 	return (0);
 }
 

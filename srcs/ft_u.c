@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:30:57 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 15:51:11 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:55:43 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int		ft_u(t_printf **p)
 	num = (*p)->uint_val;
 	tab[0] = len_nbr_u(num);
 	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
-	str = ft_strnew(tab[1] + 1);
-	if (!str)
+	if (!(str = ft_strnew(tab[1] + 1)))
 		return (1);
 	num_str = ft_u_num_str(p, num, tab);
 	if ((*p)->minus)
@@ -89,7 +88,10 @@ int		ft_u(t_printf **p)
 	else
 		u_default(p, str, tab, num_str);
 	(*p)->final_len += ft_strlen(str);
-	(*p)->final_str = ft_strjoin((*p)->final_str, str);
-	free(str);
+	free(num_str);
+	num_str = (*p)->final_str;
+	(*p)->final_str = ft_strjoin_len((*p)->final_str, str,
+			ft_strlen(str), (*p)->final_len - ft_strlen(str));
+	ft_free(str, num_str);
 	return (0);
 }
