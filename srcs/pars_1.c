@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 19:05:13 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 15:55:01 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/03 21:53:12 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	ft_search_width(t_printf **p, int i)
 		{
 			while ((*p)->format[i] >= '0' && (*p)->format[i] <= '9')
 				(*p)->width = (*p)->width * 10 + ((*p)->format[i++] - '0');
+		}
+		if ((*p)->width < 0)
+		{
+			(*p)->minus = 1;
+			(*p)->width *= -1;
 		}
 	}
 	return (i);
