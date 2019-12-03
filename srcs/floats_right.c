@@ -66,6 +66,7 @@ void		ft_right_part(char **str, int *i, long double num, int precision)
 	ft_overload(str, i, &num, &precision);
 	j = 0;
 	k = 0;
+	num = (double)num;
 	while (j++ < precision)
 	{
 		num = num * 10;

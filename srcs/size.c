@@ -56,8 +56,8 @@ void	ft_choose_value(t_printf **p)
 		ft_uint_value(p);
 	else if ((*p)->type == 's')
 		(*p)->str_val = (char *)(va_arg((*p)->ap, char *));
-	else if ((*p)->type == 'f' && ((*p)->size == 'L' || (*p)->size == 'l'))
-		(*p)->double_val = (double)(va_arg((*p)->ap, long double));
+	else if ((*p)->type == 'f' && ((*p)->size == 'L'))
+		(*p)->double_val = (long double)(va_arg((*p)->ap, long double));
 	else if ((*p)->type == 'f' || (*p)->type == 'F')
 		(*p)->double_val = (double)(va_arg((*p)->ap, double));
 	else if ((*p)->type == 0)
