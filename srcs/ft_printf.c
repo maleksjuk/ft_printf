@@ -17,10 +17,7 @@ int	ft_final(t_printf **p)
 	int len;
 
 	len = (*p)->final_len;
-	if ((*p)->final_len == 0)
-		ft_putstr((*p)->final_str);
-	else
-		ft_putstr_len((*p)->final_str, (*p)->final_len);
+	write(1, (*p)->final_str, (*p)->final_len);
 	free((*p)->final_str);
 	free(*p);
 	return (len);

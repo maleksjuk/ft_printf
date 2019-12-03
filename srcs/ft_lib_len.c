@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 21:11:45 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/01 20:54:19 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/03 18:57:44 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strjoin_len(char const *s1, char const *s2, int len_str,
 	if (!s1 || !s2)
 		return (NULL);
 	len = len_fin + len_str;
-	if (!(dest = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(dest = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (++i < len_fin)
 		dest[i] = s1[i];

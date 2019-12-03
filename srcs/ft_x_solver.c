@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 20:53:44 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/02 15:37:59 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/03 21:21:36 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ int			ft_x_universe(t_printf **p, char c, char x)
 	num = (*p)->uint_val;
 	if (num == 0)
 		(*p)->hash = 0;
-	if (!(trans = ft_strnew(len_nbr(num) * 2)))
+	if (!(trans = ft_strnew(25)))
 		return (1);
 	tab[0] = transform(num, 16, c, trans) + 1;
-	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width)) + (*p)->hash * 2;
 	str = ft_strnew(tab[1] + (*p)->hash * 2 + 4);
 	if (!str)
 		return (1);

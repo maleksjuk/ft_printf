@@ -22,6 +22,11 @@ int	len_nbr(intmax_t num)
 	int	len;
 
 	len = 1;
+	if (num > 9 || num < -9)
+	{
+		len++;
+		num /= 10;
+	}
 	if (num < 0)
 		num *= -1;
 	while (num > 9)

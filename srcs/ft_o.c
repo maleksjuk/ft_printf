@@ -6,7 +6,7 @@
 /*   By: obanshee <obanshee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:31:17 by obanshee          #+#    #+#             */
-/*   Updated: 2019/12/02 15:36:00 by obanshee         ###   ########.fr       */
+/*   Updated: 2019/12/03 21:11:23 by obanshee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		o_minus(t_printf **p, char *str, int tab[3], char *trans)
 	if ((*p)->hash)
 		str[tab[2]++] = '0';
 	tab[2] += for_precision(p, tab[0] - (*p)->hash, &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], trans);
+	ft_strncpy(&str[tab[2]], trans, tab[0]);
 	if ((*p)->hash)
 		tab[2] += tab[0] - 1;
 	else
@@ -31,7 +31,7 @@ void		o_zero(t_printf **p, char *str, int tab[3], char *trans)
 		str[tab[2]++] = '0';
 	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
 	tab[2] += simvol_out(p, tab[0], '0', &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], trans);
+	ft_strncpy(&str[tab[2]], trans, tab[0]);
 }
 
 void		o_default(t_printf **p, char *str, int tab[3], char *trans)
@@ -49,7 +49,7 @@ void		o_default(t_printf **p, char *str, int tab[3], char *trans)
 		tab[0]--;
 	}
 	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], trans);
+	ft_strncpy(&str[tab[2]], trans, tab[0]);
 }
 
 static int	o_continue(t_printf **p, char *str, int tab[3], char *trans)
@@ -83,12 +83,13 @@ int			ft_o(t_printf **p)
 
 	tab[2] = 0;
 	num = (*p)->uint_val;
-	trans = ft_strnew(len_nbr(num) * 3);
+	trans = ft_strnew(25);
 	if (!trans)
 		return (1);
 	tab[0] = transform(num, 8, '0', trans) + 1;
-	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width));
-	str = ft_strnew(tab[1] + 10);
+	trans[tab[0]] = '\0';
+	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width)) + (*p)->hash;
+	str = ft_strnew(tab[1] + 3);
 	if (!str)
 		return (1);
 	if (((*p)->precision > tab[0] && num != 0) || (num == 0 &&
