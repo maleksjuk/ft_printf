@@ -43,7 +43,8 @@ void	p_default(t_printf **p, char *str, int tab[3], char *trans)
 	str[tab[2]++] = 'x';
 	tab[0] -= 2;
 	tab[2] += for_precision(p, tab[0], &str[tab[2]]);
-	ft_strcpy(&str[tab[2]], trans);
+	ft_strncpy(&str[tab[2]], trans,
+			(*p)->precision == -1 ? ft_strlen(trans) : (*p)->precision);
 }
 
 void	p_final(t_printf **p, char *str, char *trans)

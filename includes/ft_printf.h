@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <math.h>
 # include "libft.h"
+# include "float.h"
 
 # define MAX_INT -922337203685477580
 
@@ -102,6 +103,10 @@ long double		ft_modulo(long double num);
 int				f_def(t_printf **p, long double *num, char *str, int tab[4]);
 int				f_zero(t_printf **p, long double *num, char *str, int tab[4]);
 int				f_minus(t_printf **p, long double *num, char *str, int tab[4]);
+void			ft_dbl_big(t_printf **p);
+int				ft_flags(t_printf **p, long double *num, char *str, int tab[4]);
+long double		ft_len_pow(long double num, int k, int precision);
+long double		ft_pow(int i);
 /*
 **	BONUS: color
 */

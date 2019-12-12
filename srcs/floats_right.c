@@ -79,7 +79,7 @@ void		ft_right_part(char **str, int *i, long double num, int precision)
 		num++;
 	if (ft_modulo(num) != modulo && k == 0)
 		num = 0;
-	modulo = ft_modulo(num) * ft_pow(k);
+	modulo = ft_len_pow(num, k, precision);
 	j = 0;
 	while (j++ < precision)
 		ft_write_right_part(str, i, &num, &modulo);

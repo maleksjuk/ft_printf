@@ -99,9 +99,9 @@ int			ft_x_universe(t_printf **p, char c, char x)
 	if (!(trans = ft_strnew(25)))
 		return (1);
 	tab[0] = transform(num, 16, c, trans) + 1;
-	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width)) + (*p)->hash * 2;
-	str = ft_strnew(tab[1] + (*p)->hash * 2 + 4);
-	if (!str)
+	tab[1] = max_val(tab[0], max_val((*p)->precision,
+			(*p)->width)) + (*p)->hash * 2;
+	if (!(str = ft_strnew(tab[1] + (*p)->hash * 2 + 4)))
 		return (1);
 	if ((*p)->hash)
 		tab[0] += 2;

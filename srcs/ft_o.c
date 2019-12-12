@@ -88,9 +88,9 @@ int			ft_o(t_printf **p)
 		return (1);
 	tab[0] = transform(num, 8, '0', trans) + 1;
 	trans[tab[0]] = '\0';
-	tab[1] = max_val(tab[0], max_val((*p)->precision, (*p)->width)) + (*p)->hash;
-	str = ft_strnew(tab[1] + 3);
-	if (!str)
+	tab[1] = max_val(tab[0], max_val((*p)->precision,
+			(*p)->width)) + (*p)->hash;
+	if (!(str = ft_strnew(tab[1] + 3)))
 		return (1);
 	if (((*p)->precision > tab[0] && num != 0) || (num == 0 &&
 		(*p)->precision > 0))

@@ -48,12 +48,12 @@ int			ft_s(t_printf **p)
 	str = ft_strnew(tab[1] + 1);
 	if (!str)
 		return (1);
-	if (ft_strequ(num, ""))
+	if (ft_strequ(num, "") || (*p)->double_val)
 		(*p)->precision = -1;
 	tab[1] = 0;
 	if ((*p)->minus)
 		s_minus(p, num, str, tab);
-	else if ((*p)->zero)
+	else if ((*p)->zero && !((*p)->double_val))
 		s_zero(p, num, str, tab);
 	else
 		s_default(p, num, str, tab);

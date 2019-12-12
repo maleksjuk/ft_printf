@@ -84,6 +84,7 @@ void	s_default(t_printf **p, char *num, char *str, int tab[2])
 	else
 	{
 		tab[1] += simvol_out(p, tab[0], ' ', str);
-		ft_strcpy(&str[tab[1]], num);
+		ft_strncpy(&str[tab[1]], num,
+				(*p)->precision == -1 ? ft_strlen(num) : (*p)->precision);
 	}
 }

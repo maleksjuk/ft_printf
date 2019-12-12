@@ -24,6 +24,10 @@ int		ft_search_type(t_printf **p, int i)
 		(*p)->type = (*p)->format[i] + 32;
 		(*p)->uppercase = 1;
 	}
+	if ((*p)->precision < -1 && (*p)->type == 'f')
+		(*p)->precision = 6;
+	else if ((*p)->precision < -1)
+		(*p)->precision = -1;
 	return (++i);
 }
 

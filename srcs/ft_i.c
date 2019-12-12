@@ -12,7 +12,15 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_i(t_printf **p)
+long double	ft_len_pow(long double num, int k, int precision)
+{
+	if (len_nbr((intmax_t)(num)) + k == precision)
+		return (ft_modulo(num) * ft_pow(k));
+	else
+		return (ft_modulo(num) * ft_pow(k) / 10);
+}
+
+int			ft_i(t_printf **p)
 {
 	return (ft_d(p));
 }
